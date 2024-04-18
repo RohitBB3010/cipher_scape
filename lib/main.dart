@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/firebase_options.dart';
 import 'package:cipher_affair/screens/auth/auth_cubit.dart';
 import 'package:cipher_affair/screens/auth/auth_state.dart';
@@ -58,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
         }
 
         if (state is AuthAuthenticatedState) {
-          return MandatoryFieldsPage();
+          return const MandatoryFieldsPage();
         }
         return Container();
       }),

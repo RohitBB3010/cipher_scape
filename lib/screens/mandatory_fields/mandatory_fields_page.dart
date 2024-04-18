@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/components/common_text_field.dart';
+import 'package:cipher_affair/components/custom_button.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
+import 'package:cipher_affair/screens/home/home_page.dart';
 import 'package:cipher_affair/screens/mandatory_fields/mandatory_field_state.dart';
 import 'package:cipher_affair/screens/mandatory_fields/mandatory_fields_cubit.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,9 @@ class MandatoryFieldsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController nameController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+
     return BlocProvider(
       create: (context) => MandatoryFieldsCubit()..checkUserData(),
       child: BlocBuilder<MandatoryFieldsCubit, MandatoryFields>(
@@ -52,8 +57,31 @@ class MandatoryFieldsPage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: CustomTextField(
                           hintText: 'Enter name',
+                          controller: nameController,
                           prefixIcon: Icons.person,
                         ),
+                      ),
+                      SpacingConsts().smallHeightBetweenFields(context),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: CustomTextField(
+                          controller: emailController,
+                          hintText: 'Enter email',
+                          prefixIcon: Icons.person,
+                        ),
+                      ),
+                      SpacingConsts().smallHeightBetweenFields(context),
+                      CustomButton(
+                        buttonText: 'Submit',
+                        buttonHeight: 0.07,
+                        buttonWidth: 0.7,
+                        color: Colors.amber,
+                        onPressed: () {
+                          context
+                              .read<MandatoryFieldsCubit>()
+                              .setMandatoryFields(
+                                  nameController.text, emailController.text);
+                        },
                       )
                     ],
                   ),
@@ -61,6 +89,17 @@ class MandatoryFieldsPage extends StatelessWidget {
               ),
             );
           }
+
+          if (state is MandatoryFieldsSubmittedState) {
+            return Center(
+              child: AutoSizeText(state.toString()),
+            );
+          }
+
+          if (state is MandatoryFieldsPresentState) {
+            return HomePage();
+          }
+
           return Container(
             child: AutoSizeText(state.toString()),
           );
