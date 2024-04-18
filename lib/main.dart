@@ -1,6 +1,18 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cipher_affair/firebase_options.dart';
+import 'package:cipher_affair/screens/auth/auth_cubit.dart';
+import 'package:cipher_affair/screens/auth/auth_state.dart';
+import 'package:cipher_affair/screens/auth/pages/enter_page.dart';
+import 'package:cipher_affair/screens/auth/pages/otp_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -31,10 +43,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {}
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return BlocProvider(
+      create: (context) => AuthCubit(),
+      child: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+        if (state is AuthUnauthenticatedState) {
+          return EnterPage();
+        }
+
+        if (state is OtpSentState) {
+          return OtpPage();
+        }
+
+        if (state is AuthAuthenticatedState) {
+          return AutoSizeText('Home');
+        }
+        return Container();
+      }),
+    );
   }
 }
