@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "602287237067",
+    "project_id": "cipher-affair-69d2d",
+    "storage_bucket": "cipher-affair-69d2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602287237067:android:64f2148fbfab9ebff4384e",
+        "android_client_info": {
+          "package_name": "com.example.cipher_affair"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuuvhNLXKbUXwN-3_aECkA1l4FTIgFKk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
