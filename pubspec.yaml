@@ -18,6 +18,12 @@ dependencies:
   firebase_core: ^2.30.0
   flutter_bloc: ^8.1.5
   auto_size_text: ^3.0.0
+  json_annotation: ^4.8.1
+  build_runner: ^2.4.9
+  json_serializable: ^6.7.1
+  firebase_storage: ^11.7.2
+  cloud_firestore: ^4.17.0
+  bloc: ^8.1.4
 
 dev_dependencies:
   flutter_test:
@@ -42,4 +48,8 @@ flutter:
         - asset: fonts/LegioSabina3DRegular-7BaoA.otf
         - asset: fonts/LegioSabinaBold-d9DlX.otf
 
+    - family: Kod
+      fonts:
+        - asset: fonts/Kodchasan-Regular.ttf
+       
 

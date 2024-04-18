@@ -4,6 +4,7 @@ import 'package:cipher_affair/screens/auth/auth_cubit.dart';
 import 'package:cipher_affair/screens/auth/auth_state.dart';
 import 'package:cipher_affair/screens/auth/pages/enter_page.dart';
 import 'package:cipher_affair/screens/auth/pages/otp_page.dart';
+import 'package:cipher_affair/screens/mandatory_fields/mandatory_fields_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
         }
 
         if (state is AuthAuthenticatedState) {
-          return AutoSizeText('Home');
+          return MandatoryFieldsPage();
         }
         return Container();
       }),

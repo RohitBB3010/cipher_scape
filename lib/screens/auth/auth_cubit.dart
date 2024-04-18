@@ -1,4 +1,6 @@
+import 'package:cipher_affair/consts/fb_player.dart';
 import 'package:cipher_affair/screens/auth/auth_state.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +14,8 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  String get uid => _auth.currentUser!.uid;
 
   String? _verificationId;
 
@@ -55,5 +59,15 @@ class AuthCubit extends Cubit<AuthState> {
     } on FirebaseAuthException catch (error) {
       emit(AuthErrorState(error: error.message.toString()));
     }
+  }
+
+  Future<bool> checkIfUserExists(String phoneNumber) async {
+    await FirebaseFirestore.instance
+        .collection(FirebasePlayer.fieldPlayers)
+        .where(FirebasePlayer.fieldPhone, isEqualTo: phoneNumber)
+        .get()
+        .then((value) {});
+
+    return false;
   }
 }
