@@ -16,7 +16,7 @@ class LoginComponent {
         AutoSizeText(
           'Cypher Affair',
           style: TextStyle(
-              fontFamily: 'Legio', fontSize: fontSize, color: Colors.white),
+              fontFamily: 'Legio', fontSize: fontSize, color: Colors.amber),
         ),
         SpacingConsts().smallHeightBetweenFields(context),
         SizedBox(
