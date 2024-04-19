@@ -26,6 +26,7 @@ dependencies:
   bloc: ^8.1.4
   video_player: ^2.8.6
   carousel_slider: ^4.2.1
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +43,7 @@ flutter:
   assets:
     - assets/
     - assets/carousel/
+    - assets/loading_assets/
 
 
 

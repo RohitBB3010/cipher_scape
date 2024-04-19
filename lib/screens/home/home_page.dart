@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/components/custom_button.dart';
-import 'package:cipher_affair/components/image_carousel.dart';
+import 'package:cipher_affair/components/loading_page.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/list_levels.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
     //   ),
     // );
 
-    return CarouselImage();
+    return LoadingPage();
   }
 
   Widget levelGrid(
