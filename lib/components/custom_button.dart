@@ -30,7 +30,8 @@ class CustomButton extends StatelessWidget {
         child: AutoSizeText(
           buttonText,
           maxLines: 1,
-          style: const TextStyle(color: Colors.white, fontSize: 25.0),
+          style: const TextStyle(
+              color: Colors.white, fontSize: 25.0, fontFamily: 'Kod'),
         ),
       ),
     );
