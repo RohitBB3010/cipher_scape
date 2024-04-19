@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/components/common_text_field.dart';
 import 'package:cipher_affair/components/custom_button.dart';
+import 'package:cipher_affair/components/loading_page.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/home/home_page.dart';
@@ -22,9 +23,7 @@ class MandatoryFieldsPage extends StatelessWidget {
       child: BlocBuilder<MandatoryFieldsCubit, MandatoryFields>(
         builder: (context, state) {
           if (state is MandatoryFieldsLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const LoadingPage();
           }
 
           if (state is MandatoryFieldsNotFilledState) {

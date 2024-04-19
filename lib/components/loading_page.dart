@@ -35,42 +35,44 @@ class LoadingPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: primary_3,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SpacingConsts().customHeightBetweenFields(context, 0.15),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.04,
-            ),
-            child: const AutoSizeText(
-              'Cypher Scape',
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontFamily: 'Legio', color: Colors.amber, fontSize: 60.0),
-            ),
-          ),
-          SpacingConsts().largeHeightBetweenFields(context),
-          CarouselSlider(
-              items: loadingAssets,
-              options: CarouselOptions(
-                autoPlay: true,
-                autoPlayInterval: const Duration(milliseconds: 2000),
-                autoPlayAnimationDuration: const Duration(milliseconds: 800),
-              )),
-          DefaultTextStyle(
-              style: const TextStyle(
-                fontSize: 40.0,
-                color: Colors.amber,
-                fontFamily: 'Kod',
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SpacingConsts().customHeightBetweenFields(context, 0.15),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.04,
               ),
-              child: AnimatedTextKit(
-                pause: const Duration(milliseconds: 2000),
-                repeatForever: true,
-                animatedTexts: [TyperAnimatedText('Loading...')],
-              ))
-        ],
+              child: const AutoSizeText(
+                'Cypher Scape',
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontFamily: 'Legio', color: Colors.amber, fontSize: 60.0),
+              ),
+            ),
+            SpacingConsts().largeHeightBetweenFields(context),
+            CarouselSlider(
+                items: loadingAssets,
+                options: CarouselOptions(
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(milliseconds: 2000),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                )),
+            DefaultTextStyle(
+                style: const TextStyle(
+                  fontSize: 40.0,
+                  color: Colors.amber,
+                  fontFamily: 'Kod',
+                ),
+                child: AnimatedTextKit(
+                  pause: const Duration(milliseconds: 2000),
+                  repeatForever: true,
+                  animatedTexts: [TyperAnimatedText('Loading...')],
+                ))
+          ],
+        ),
       ),
     );
   }

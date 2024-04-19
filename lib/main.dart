@@ -1,3 +1,4 @@
+import 'package:cipher_affair/components/loading_page.dart';
 import 'package:cipher_affair/firebase_options.dart';
 import 'package:cipher_affair/screens/auth/auth_cubit.dart';
 import 'package:cipher_affair/screens/auth/auth_state.dart';
@@ -54,6 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
         if (state is OtpSentState) {
           return OtpPage();
+        }
+
+        if (state is AuthLoadingState) {
+          return const LoadingPage();
         }
 
         if (state is AuthAuthenticatedState) {
