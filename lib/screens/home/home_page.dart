@@ -7,6 +7,8 @@ import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/auth/auth_cubit.dart';
 import 'package:cipher_affair/screens/home/home_page_functions.dart';
 import 'package:cipher_affair/screens/home/level.dart';
+import 'package:cipher_affair/screens/levels/level_1/level_1_page.dart';
+import 'package:cipher_affair/screens/levels/level_1/level_1_video.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -102,6 +104,12 @@ class _HomePageState extends State<HomePage> {
   Widget levelGrid(
       Level level, BuildContext context, List<String> levelsCompleted) {
     return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Level1Video(currentLevel: level)));
+      },
       child: Container(
         height: MediaQuery.of(context).size.height * 0.3,
         width: MediaQuery.of(context).size.width * 0.6,
