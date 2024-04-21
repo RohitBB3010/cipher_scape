@@ -1,32 +1,35 @@
 class CeaserCipher {
-  List<String> cipherTexts = ['Rnsfyzx', 'Cetutwfkwzxfx', 'Jswxytqjsy'];
+  List<String> cipherTexts = ['Rnsfyzx', 'Cdqtufwfqdxnx', 'Jswxytqjsy'];
 
-  String solveCeaserCipher(String cipherText, int key) {
-    String plaintext = '';
+  String decryptCaesar(String cipherText, int shift) {
+    String result = "";
     for (int i = 0; i < cipherText.length; i++) {
-      String char = cipherText[i];
-      if (char.codeUnitAt(0) >= 'a'.codeUnitAt(0) &&
-          char.codeUnitAt(0) <= 'z'.codeUnitAt(0)) {
-        int decryptedCharCode =
-            ((char.codeUnitAt(0) - 'a'.codeUnitAt(0) - key) % 26) +
-                'a'.codeUnitAt(0);
-        if (decryptedCharCode < 'a'.codeUnitAt(0)) {
-          decryptedCharCode += 26;
-        }
-        plaintext += String.fromCharCode(decryptedCharCode);
-      } else if (char.codeUnitAt(0) >= 'A'.codeUnitAt(0) &&
-          char.codeUnitAt(0) <= 'Z'.codeUnitAt(0)) {
-        int decryptedCharCode =
-            ((char.codeUnitAt(0) - 'A'.codeUnitAt(0) - key) % 26) +
-                'A'.codeUnitAt(0);
-        if (decryptedCharCode < 'A'.codeUnitAt(0)) {
-          decryptedCharCode += 26;
-        }
-        plaintext += String.fromCharCode(decryptedCharCode);
-      } else {
-        plaintext += char;
+      int charCode = cipherText.codeUnitAt(i);
+      if (charCode >= 65 && charCode <= 90) {
+        // Uppercase letter
+        charCode = (charCode - shift - 65) % 26 + 65;
+      } else if (charCode >= 97 && charCode <= 122) {
+        // Lowercase letter
+        charCode = (charCode - shift - 97) % 26 + 97;
       }
+      result += String.fromCharCode(charCode);
     }
-    return plaintext;
+    return result;
+  }
+
+  String encryptCaesarCipher(String plainText, int shift) {
+    String result = "";
+    for (int i = 0; i < plainText.length; i++) {
+      int charCode = plainText.codeUnitAt(i);
+      if (charCode >= 65 && charCode <= 90) {
+        // Uppercase letter
+        charCode = (charCode + shift - 65) % 26 + 65;
+      } else if (charCode >= 97 && charCode <= 122) {
+        // Lowercase letter
+        charCode = (charCode + shift - 97) % 26 + 97;
+      }
+      result += String.fromCharCode(charCode);
+    }
+    return result;
   }
 }

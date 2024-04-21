@@ -4,6 +4,7 @@ import 'package:cipher_affair/cipher_functions/ceaser_cipher.dart';
 import 'package:cipher_affair/components/shake_widget.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
+import 'package:cipher_affair/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class Level1Page extends StatefulWidget {
@@ -32,6 +33,24 @@ class _Level1PageState extends State<Level1Page> {
       minimum: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.06),
       top: true,
       child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.amber,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10))),
+          leading: null,
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage()));
+              },
+              child: const AutoSizeText('Quit'),
+            )
+          ],
+        ),
         backgroundColor: primary_3,
         body: Container(
           color: primary_3,
@@ -79,9 +98,15 @@ class _Level1PageState extends State<Level1Page> {
                       ElevatedButton(
                           onPressed: () {
                             String plainText =
-                                CeaserCipher().solveCeaserCipher(cipherText, 5);
+                                CeaserCipher().decryptCaesar('Rnsfyzx', 5);
 
-                            if (plainText == _plainController.text) {
+                            String cipherTect =
+                                CeaserCipher().encryptCaesarCipher('', 5);
+
+                            print(cipherTect);
+                            if (plainText.toLowerCase() ==
+                                _plainController.text.toLowerCase()) {
+                              debugPrint('plain text is $plainText');
                             } else {
                               shakeKey.currentState?.shakeWidget();
                             }

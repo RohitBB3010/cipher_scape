@@ -55,13 +55,17 @@ class _Level1VideoState extends State<Level1Video> {
               fontSize: 30),
         ),
       ),
-      body: Center(
-        child: _videoPlayerController.value.isInitialized
-            ? AspectRatio(
-                aspectRatio: _videoPlayerController.value.aspectRatio,
-                child: VideoPlayer(_videoPlayerController),
-              )
-            : Container(),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: _videoPlayerController.value.isInitialized
+              ? AspectRatio(
+                  aspectRatio: _videoPlayerController.value.aspectRatio,
+                  child: VideoPlayer(_videoPlayerController),
+                )
+              : Container(),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
