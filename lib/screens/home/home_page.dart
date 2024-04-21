@@ -5,6 +5,7 @@ import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/list_levels.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/auth/auth_cubit.dart';
+import 'package:cipher_affair/screens/home/home_page_functions.dart';
 import 'package:cipher_affair/screens/home/level.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,67 +19,88 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(),
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: primary_3,
-          body: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.02,
-              vertical: MediaQuery.of(context).size.height * 0.02,
-            ),
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/home_page_1.jpeg'),
-                    fit: BoxFit.cover,
-                    opacity: 0.2)),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SpacingConsts().mediumHeightBetweenFields(context),
-                  const AutoSizeText(
-                    'CypherScape',
-                    maxLines: 1,
-                    style: TextStyle(
-                        fontSize: 55.0,
-                        fontFamily: 'Legio',
-                        color: Colors.amber),
+    return FutureBuilder(
+        future: HomePageFunction().returnPlayer(),
+        builder: ((context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const LoadingPage();
+          }
+
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData) {
+              return BlocProvider(
+                create: (context) => AuthCubit(),
+                child: SafeArea(
+                  child: Scaffold(
+                    backgroundColor: primary_3,
+                    body: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.02,
+                        vertical: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/home_page_1.jpeg'),
+                              fit: BoxFit.cover,
+                              opacity: 0.2)),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            SpacingConsts().mediumHeightBetweenFields(context),
+                            const AutoSizeText(
+                              'CypherScape',
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontSize: 55.0,
+                                  fontFamily: 'Legio',
+                                  color: Colors.amber),
+                            ),
+                            SpacingConsts().mediumHeightBetweenFields(context),
+                            Wrap(
+                              runSpacing:
+                                  MediaQuery.of(context).size.height * 0.03,
+                              children: levels.take(2).map((level) {
+                                return levelGrid(
+                                    level, context, snapshot.data!.levels!);
+                              }).toList(),
+                            ),
+                            SpacingConsts().mediumHeightBetweenFields(context),
+                            CustomButton(
+                              buttonText: 'Logout',
+                              buttonHeight: 0.05,
+                              buttonWidth: 0.7,
+                              onPressed: () {
+                                setState(() {
+                                  context.read<AuthCubit>().signOut();
+                                });
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                  SpacingConsts().mediumHeightBetweenFields(context),
-                  Wrap(
-                    runSpacing: MediaQuery.of(context).size.height * 0.03,
-                    children: levels.take(2).map((level) {
-                      return levelGrid(level, context);
-                    }).toList(),
-                  ),
-                  SpacingConsts().mediumHeightBetweenFields(context),
-                  CustomButton(
-                    buttonText: 'Logout',
-                    buttonHeight: 0.05,
-                    buttonWidth: 0.7,
-                    onPressed: () {
-                      setState(() {
-                        context.read<AuthCubit>().signOut();
-                      });
-                    },
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+                ),
+              );
+            } else {
+              return const LoadingPage();
+            }
+          }
+
+          return Container();
+        }));
   }
 
   Widget levelGrid(
-    Level level,
-    BuildContext context,
-  ) {
+      Level level, BuildContext context, List<String> levelsCompleted) {
     return InkWell(
       child: Container(
         height: MediaQuery.of(context).size.height * 0.3,
@@ -87,7 +109,13 @@ class _HomePageState extends State<HomePage> {
             borderRadius: BorderRadius.circular(10.0),
             border: Border.all(color: Colors.white, width: 2),
             image: DecorationImage(
-                image: AssetImage(level.image!), fit: BoxFit.cover)),
+                image: AssetImage(level.image!),
+                fit: BoxFit.cover,
+                opacity: level.level != 1 &&
+                        levels.isNotEmpty &&
+                        !levelsCompleted.contains(level.level.toString())
+                    ? 0.2
+                    : 1)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,11 +126,15 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.02,
               ),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10)),
-                color: Colors.amber,
+                color: Colors.amber.withOpacity(level.level != 1 &&
+                        levels.isNotEmpty &&
+                        !levelsCompleted.contains(level.level.toString())
+                    ? 0.2
+                    : 1),
               ),
               child: Center(
                   child: AutoSizeText(
