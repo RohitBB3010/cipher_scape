@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.2"
+  animated_widgets:
+    dependency: "direct main"
+    description:
+      name: animated_widgets
+      sha256: "2d6b77a77fc733b06e185553ec0b8225ffd1dd0e6fa327900ff26f1e04995eda"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   args:
     dependency: transitive
     description:
@@ -366,6 +374,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  flutter_shakemywidget:
+    dependency: "direct main"
+    description:
+      name: flutter_shakemywidget
+      sha256: "36ecb6a6e63fc1ccd14bb77610986eef7a7b0c6e97ac846fad0c4ac1af882604"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter

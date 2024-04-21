@@ -27,6 +27,8 @@ dependencies:
   video_player: ^2.8.6
   carousel_slider: ^4.2.1
   animated_text_kit: ^4.2.2
+  animated_widgets: ^1.1.0
+  flutter_shakemywidget: ^1.0.5+1
 
 dev_dependencies:
   flutter_test:
