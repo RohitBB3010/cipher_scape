@@ -1,6 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cipher_affair/components/custom_button.dart';
+import 'package:cipher_affair/components/custom_icon_button.dart';
 import 'package:cipher_affair/consts/colors.dart';
+import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/levels/level_1/level_1_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,33 +17,49 @@ class Level1Carousel extends StatefulWidget {
 class _Level1CarouselState extends State<Level1Carousel> {
   List<int> levels = [1, 2, 3, 4, 5, 6, 7, 8];
   CarouselController buttonCarouselController = CarouselController();
+  int currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
+    print(currentPage);
     return SafeArea(
         child: Scaffold(
       backgroundColor: primary_3,
       appBar: AppBar(
         toolbarHeight: MediaQuery.of(context).size.height * 0.08,
-        leading: ElevatedButton(
-            onPressed: () {
-              buttonCarouselController.previousPage();
-            },
-            child: AutoSizeText('Previous')),
-        title: ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Level1Page()));
-            },
-            child: AutoSizeText('Skip')),
-        centerTitle: true,
-        actions: [
-          ElevatedButton(
+        leadingWidth: MediaQuery.of(context).size.width,
+        leading: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomIconButton(
+              iconData: Icons.arrow_back,
+              width: 0.2,
+              height: 0.05,
+              onPressed: () {
+                buttonCarouselController.previousPage();
+              },
+            ),
+            CustomButton(
+              buttonHeight: 0.05,
+              buttonWidth: 0.3,
+              buttonText: currentPage == 7 ? 'Start' : 'Skip',
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Level1Page()));
+              },
+            ),
+            CustomIconButton(
+              iconData: Icons.arrow_forward,
+              width: 0.2,
+              height: 0.05,
               onPressed: () {
                 buttonCarouselController.nextPage();
               },
-              child: AutoSizeText('Next')),
-        ],
+            )
+          ],
+        ),
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(10),
@@ -62,6 +81,10 @@ class _Level1CarouselState extends State<Level1Carousel> {
           }).toList(),
           carouselController: buttonCarouselController,
           options: CarouselOptions(
+              onPageChanged: (index, reason) {
+                currentPage = index;
+                setState(() {});
+              },
               autoPlay: true,
               height: MediaQuery.of(context).size.height,
               enableInfiniteScroll: false,
