@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/cipher_functions/ceaser_cipher.dart';
+import 'package:cipher_affair/components/custom_button.dart';
 import 'package:cipher_affair/components/shake_widget.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
@@ -17,7 +18,7 @@ class Level1Page extends StatefulWidget {
 class _Level1PageState extends State<Level1Page> {
   late String cipherText = '';
   final shakeKey = GlobalKey<ShakeWidgetState>();
-  TextEditingController _plainController = TextEditingController();
+  final TextEditingController _plainController = TextEditingController();
 
   @override
   void initState() {
@@ -28,7 +29,6 @@ class _Level1PageState extends State<Level1Page> {
 
   @override
   Widget build(BuildContext context) {
-    print(cipherText);
     return SafeArea(
       minimum: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.06),
       top: true,
@@ -42,13 +42,20 @@ class _Level1PageState extends State<Level1Page> {
                   bottomRight: Radius.circular(10))),
           leading: null,
           actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
-              },
-              child: const AutoSizeText('Quit'),
-            )
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => const HomePage()));
+            //   },
+            //   child: const AutoSizeText('Quit'),
+            // )
+            CustomButton(
+                buttonText: 'Quit',
+                buttonHeight: 0.05,
+                buttonWidth: 0.2,
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/');
+                })
           ],
         ),
         backgroundColor: primary_3,
@@ -79,6 +86,7 @@ class _Level1PageState extends State<Level1Page> {
                       vertical: MediaQuery.of(context).size.height * 0.01),
                   width: MediaQuery.of(context).size.width,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.6,
@@ -95,23 +103,22 @@ class _Level1PageState extends State<Level1Page> {
                                   borderSide: BorderSide(color: Colors.black))),
                         ),
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            String plainText =
-                                CeaserCipher().decryptCaesar('Rnsfyzx', 5);
+                      CustomButton(
+                        buttonText: 'Unlock',
+                        buttonHeight: 0.05,
+                        buttonWidth: 0.2,
+                        onPressed: () {
+                          String plainText =
+                              CeaserCipher().decryptCaesar('Rnsfyzx', 5);
 
-                            String cipherTect =
-                                CeaserCipher().encryptCaesarCipher('', 5);
-
-                            print(cipherTect);
-                            if (plainText.toLowerCase() ==
-                                _plainController.text.toLowerCase()) {
-                              debugPrint('plain text is $plainText');
-                            } else {
-                              shakeKey.currentState?.shakeWidget();
-                            }
-                          },
-                          child: AutoSizeText('Unlock'))
+                          if (plainText.toLowerCase() ==
+                              _plainController.text.toLowerCase()) {
+                            debugPrint('plain text is $plainText');
+                          } else {
+                            shakeKey.currentState?.shakeWidget();
+                          }
+                        },
+                      )
                     ],
                   ),
                 ),

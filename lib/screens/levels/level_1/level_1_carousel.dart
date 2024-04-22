@@ -21,7 +21,6 @@ class _Level1CarouselState extends State<Level1Carousel> {
 
   @override
   Widget build(BuildContext context) {
-    print(currentPage);
     return SafeArea(
         child: Scaffold(
       backgroundColor: primary_3,
