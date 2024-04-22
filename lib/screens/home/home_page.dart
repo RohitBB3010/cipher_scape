@@ -1,3 +1,4 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/components/custom_button.dart';
 import 'package:cipher_affair/components/loading_page.dart';
@@ -7,9 +8,9 @@ import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/auth/auth_cubit.dart';
 import 'package:cipher_affair/screens/home/home_page_functions.dart';
 import 'package:cipher_affair/screens/home/level.dart';
-import 'package:cipher_affair/screens/levels/level_1/level_1_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,9 +20,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late AudioPlayer audioPlayer;
+
   @override
   void initState() {
     super.initState();
+    audioPlayer = AudioPlayer()..setAsset('assets/music/music.mp3');
+    audioPlayer.play();
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
   }
 
   @override

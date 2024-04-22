@@ -5,7 +5,6 @@ import 'package:cipher_affair/components/custom_button.dart';
 import 'package:cipher_affair/components/shake_widget.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
-import 'package:cipher_affair/screens/home/home_page.dart';
 import 'package:cipher_affair/screens/levels/level_1/level_1_functions.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +24,7 @@ class _Level1PageState extends State<Level1Page> {
   void initState() {
     super.initState();
     Random random = Random();
-    cipherText = CeaserCipher().cipherTexts[random.nextInt(3)];
+    cipherText = CeaserCipher().cipherTexts[random.nextInt(2)];
   }
 
   @override
@@ -105,11 +104,10 @@ class _Level1PageState extends State<Level1Page> {
                           String plainText =
                               CeaserCipher().decryptCaesar(cipherText, 5);
 
-                          print(plainText);
                           if (plainText.toLowerCase() ==
                               _plainController.text.toLowerCase()) {
-                            debugPrint('plain text is $plainText');
                             Level1Functions().updateLevelsFirebase();
+                            Navigator.pushReplacementNamed(context, '/');
                           } else {
                             shakeKey.currentState?.shakeWidget();
                           }

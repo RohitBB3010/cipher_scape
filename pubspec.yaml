@@ -29,6 +29,8 @@ dependencies:
   animated_text_kit: ^4.2.2
   animated_widgets: ^1.1.0
   flutter_shakemywidget: ^1.0.5+1
+  just_audio: ^0.9.37
+  assets_audio_player: ^3.1.1
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +50,7 @@ flutter:
     - assets/loading_assets/
     - assets/videos/
     - assets/carousel/level_1_carousel/
+    - assets/music/
 
 
 

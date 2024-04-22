@@ -1,7 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/consts/fb_player.dart';
 import 'package:cipher_affair/screens/auth/auth_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -59,6 +61,11 @@ class AuthCubit extends Cubit<AuthState> {
     } on FirebaseAuthException catch (error) {
       emit(AuthErrorState(error: error.message.toString()));
     }
+  }
+
+  void showErrorMessage(BuildContext context) {
+    var snackBar = const SnackBar(content: AutoSizeText('Invald OTP'));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   Future<bool> checkIfUserExists(String phoneNumber) async {

@@ -6,6 +6,7 @@ import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/levels/level_1/level_1_page.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 
 class Level1Carousel extends StatefulWidget {
   const Level1Carousel({super.key});
@@ -18,6 +19,20 @@ class _Level1CarouselState extends State<Level1Carousel> {
   List<int> levels = [1, 2, 3, 4, 5, 6, 7, 8];
   CarouselController buttonCarouselController = CarouselController();
   int currentPage = 0;
+  late AudioPlayer audioPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+    audioPlayer = AudioPlayer()..setAsset('assets/music/backgroundMusic.mp3');
+    audioPlayer.play();
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

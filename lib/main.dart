@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/components/loading_page.dart';
 import 'package:cipher_affair/firebase_options.dart';
 import 'package:cipher_affair/routes.dart';
@@ -26,7 +27,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      initialRoute: '/',
       routes: routes,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -49,26 +49,32 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(),
-      child: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
-        if (state is AuthUnauthenticatedState) {
-          return EnterPage();
-        }
+    return Scaffold(
+      body: BlocProvider(
+        create: (context) => AuthCubit(),
+        child: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+          if (state is AuthUnauthenticatedState) {
+            return EnterPage();
+          }
 
-        if (state is OtpSentState) {
-          return OtpPage();
-        }
+          if (state is OtpSentState) {
+            return OtpPage();
+          }
 
-        if (state is AuthLoadingState) {
-          return const LoadingPage();
-        }
+          if (state is AuthErrorState) {
+            return EnterPage();
+          }
 
-        if (state is AuthAuthenticatedState) {
-          return const MandatoryFieldsPage();
-        }
-        return Container();
-      }),
+          if (state is AuthLoadingState) {
+            return const LoadingPage();
+          }
+
+          if (state is AuthAuthenticatedState) {
+            return const MandatoryFieldsPage();
+          }
+          return Container();
+        }),
+      ),
     );
   }
 }
