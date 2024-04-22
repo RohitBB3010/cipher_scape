@@ -34,18 +34,15 @@ class MandatoryFieldsCubit extends Cubit<MandatoryFields> {
   Future<void> setMandatoryFields(String name, String email) async {
     Player playerToAdd = Player(
         name: name,
+        id: AuthCubit().uid,
         phoneNumber: FirebaseAuth.instance.currentUser!.phoneNumber,
         email: email,
         levels: []);
 
     var doc = await FirebaseFirestore.instance
         .collection(FirebasePlayer.fieldPlayers)
-        .add(playerToAdd.toJson());
-
-    FirebaseFirestore.instance
-        .collection(FirebasePlayer.fieldPlayers)
-        .doc(doc.id)
-        .update({FirebasePlayer.id: doc.id});
+        .doc(AuthCubit().uid)
+        .set(playerToAdd.toJson());
 
     emit(MandatoryFieldsPresentState());
   }

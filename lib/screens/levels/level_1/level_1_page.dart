@@ -6,6 +6,7 @@ import 'package:cipher_affair/components/shake_widget.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/home/home_page.dart';
+import 'package:cipher_affair/screens/levels/level_1/level_1_functions.dart';
 import 'package:flutter/material.dart';
 
 class Level1Page extends StatefulWidget {
@@ -42,13 +43,6 @@ class _Level1PageState extends State<Level1Page> {
                   bottomRight: Radius.circular(10))),
           leading: null,
           actions: [
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.push(context,
-            //         MaterialPageRoute(builder: (context) => const HomePage()));
-            //   },
-            //   child: const AutoSizeText('Quit'),
-            // )
             CustomButton(
                 buttonText: 'Quit',
                 buttonHeight: 0.05,
@@ -109,11 +103,13 @@ class _Level1PageState extends State<Level1Page> {
                         buttonWidth: 0.2,
                         onPressed: () {
                           String plainText =
-                              CeaserCipher().decryptCaesar('Rnsfyzx', 5);
+                              CeaserCipher().decryptCaesar(cipherText, 5);
 
+                          print(plainText);
                           if (plainText.toLowerCase() ==
                               _plainController.text.toLowerCase()) {
                             debugPrint('plain text is $plainText');
+                            Level1Functions().updateLevelsFirebase();
                           } else {
                             shakeKey.currentState?.shakeWidget();
                           }

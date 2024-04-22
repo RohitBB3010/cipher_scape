@@ -8,8 +8,6 @@ import 'package:cipher_affair/screens/auth/auth_cubit.dart';
 import 'package:cipher_affair/screens/home/home_page_functions.dart';
 import 'package:cipher_affair/screens/home/level.dart';
 import 'package:cipher_affair/screens/levels/level_1/level_1_carousel.dart';
-import 'package:cipher_affair/screens/levels/level_1/level_1_page.dart';
-import 'package:cipher_affair/screens/levels/level_1/level_1_video.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
