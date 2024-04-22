@@ -1,5 +1,6 @@
 import 'package:cipher_affair/components/loading_page.dart';
 import 'package:cipher_affair/firebase_options.dart';
+import 'package:cipher_affair/routes.dart';
 import 'package:cipher_affair/screens/auth/auth_cubit.dart';
 import 'package:cipher_affair/screens/auth/auth_state.dart';
 import 'package:cipher_affair/screens/auth/pages/enter_page.dart';
@@ -25,6 +26,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      initialRoute: '/',
+      routes: routes,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

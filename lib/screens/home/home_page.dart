@@ -104,14 +104,13 @@ class _HomePageState extends State<HomePage> {
       Level level, BuildContext context, List<String> levelsCompleted) {
     return InkWell(
       onTap: () {
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => Level1Video(currentLevel: level)
-        //         )
-        //         );
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Level1Carousel()));
+        if (level.level == 1) {
+          Navigator.pushReplacementNamed(context, '/level1');
+        }
+        if (levelsCompleted.contains((level.level - 1).toString())) {
+          String route = '/level${level.level}';
+          Navigator.pushReplacementNamed(context, route);
+        }
       },
       child: Container(
         height: MediaQuery.of(context).size.height * 0.3,
@@ -124,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                 fit: BoxFit.cover,
                 opacity: level.level != 1 &&
                         levels.isNotEmpty &&
-                        !levelsCompleted.contains(level.level.toString())
+                        !levelsCompleted.contains((level.level - 1).toString())
                     ? 0.2
                     : 1)),
         child: Column(
@@ -143,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                     bottomRight: Radius.circular(10)),
                 color: Colors.amber.withOpacity(level.level != 1 &&
                         levels.isNotEmpty &&
-                        !levelsCompleted.contains(level.level.toString())
+                        !levelsCompleted.contains((level.level - 1).toString())
                     ? 0.2
                     : 1),
               ),
