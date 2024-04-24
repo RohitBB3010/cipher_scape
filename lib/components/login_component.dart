@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class LoginComponent {
   Widget basicComp(
@@ -26,10 +28,16 @@ class LoginComponent {
             ),
           ),
           SpacingConsts().smallHeightBetweenFields(context),
-          SizedBox(
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: primary_3)),
             width: MediaQuery.of(context).size.width * width,
             height: MediaQuery.of(context).size.height * height,
-            child: Image.asset('assets/login.png'),
+            child: Image.asset(
+              'assets/login.png',
+              fit: BoxFit.cover,
+            ),
           )
         ],
       ),

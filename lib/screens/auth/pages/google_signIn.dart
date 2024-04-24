@@ -16,7 +16,7 @@ class GoogleSignIn extends StatelessWidget {
         backgroundColor: primary_3,
         body: Column(
           children: [
-            LoginComponent().basicComp(0.6, 0.2, 50, context),
+            LoginComponent().basicComp(0.8, 0.4, 50, context),
             SpacingConsts().mediumHeightBetweenFields(context),
             SignInButton(Buttons.googleDark, onPressed: () {
               context.read<AuthCubit>().googleSignIn();

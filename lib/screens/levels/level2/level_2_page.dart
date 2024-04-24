@@ -8,6 +8,7 @@ import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/levels/level2/locker_unlocked.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Level2Page extends StatefulWidget {
   const Level2Page({super.key});
@@ -35,19 +36,31 @@ class _Level2PageState extends State<Level2Page> {
         appBar: AppBar(
           backgroundColor: Colors.amber,
           automaticallyImplyLeading: false,
-          centerTitle: true,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(10),
                   bottomRight: Radius.circular(10))),
           title: CustomButton(
-            buttonText: 'Quit',
+            buttonText: 'Vignere Ciphere',
+            color: accent_3,
             buttonHeight: 0.05,
-            buttonWidth: 0.2,
+            buttonWidth: 0.4,
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/');
+              Uri url =
+                  Uri.parse('https://www.geeksforgeeks.org/vigenere-cipher/');
+              launchUrl(url);
             },
           ),
+          actions: [
+            CustomButton(
+              buttonText: 'Quit',
+              buttonHeight: 0.05,
+              buttonWidth: 0.2,
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/');
+              },
+            ),
+          ],
         ),
         backgroundColor: primary_3,
         body: Container(

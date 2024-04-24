@@ -8,6 +8,7 @@ import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/levels/level_1/level_1_functions.dart';
 import 'package:cipher_affair/screens/levels/level_1/puzzle_unlocked.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Level1Page extends StatefulWidget {
   const Level1Page({super.key});
@@ -41,7 +42,17 @@ class _Level1PageState extends State<Level1Page> {
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(10),
                   bottomRight: Radius.circular(10))),
-          leading: null,
+          title: CustomButton(
+            buttonText: 'Ceaser Cipher',
+            buttonHeight: 0.05,
+            buttonWidth: 0.4,
+            color: accent_3,
+            onPressed: () {
+              Uri url = Uri.parse(
+                  'https://www.geeksforgeeks.org/caesar-cipher-in-cryptography/');
+              launchUrl(url);
+            },
+          ),
           actions: [
             CustomButton(
                 buttonText: 'Quit',
@@ -70,7 +81,7 @@ class _Level1PageState extends State<Level1Page> {
                         vertical: MediaQuery.of(context).size.height * 0.01),
                     color: Colors.white,
                     child: AutoSizeText(
-                      'Decipher the code using for the cipher text "$cipherText" and key 5',
+                      'Decipher the code using ceaser cipher for the cipher text "$cipherText" and key 5',
                       maxLines: 2,
                       style: const TextStyle(fontSize: 20, fontFamily: 'Kod'),
                     )),
