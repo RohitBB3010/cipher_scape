@@ -102,6 +102,7 @@ class AuthCubit extends Cubit<AuthState> {
   void signOut() async {
     await FirebaseAuth.instance.signOut();
     await FirebaseFirestore.instance.terminate();
+    await GoogleSignIn().signOut();
     emit(AuthUnauthenticatedState());
   }
 }

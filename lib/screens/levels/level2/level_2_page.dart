@@ -6,6 +6,7 @@ import 'package:cipher_affair/components/custom_button.dart';
 import 'package:cipher_affair/components/shake_widget.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
+import 'package:cipher_affair/screens/levels/level2/locker_unlocked.dart';
 import 'package:flutter/material.dart';
 
 class Level2Page extends StatefulWidget {
@@ -95,11 +96,15 @@ class _Level2PageState extends State<Level2Page> {
                       buttonWidth: 0.2,
                       onPressed: () {
                         String decipheredText = VigenereCipher()
-                            .encryptVigenere('saintgermain', 'code');
-
+                            .decryptVigenere(cipherText, 'code');
+                        print(decipheredText);
                         if (decipheredText.toLowerCase() ==
                             controller.text.toLowerCase()) {
-                          Navigator.pushReplacementNamed(context, '/');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const LockerUnlocked()));
                         } else {
                           debugPrint('shake called');
                           shakeKey.currentState?.shakeWidget();
