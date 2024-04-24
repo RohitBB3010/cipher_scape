@@ -117,6 +117,11 @@ class _HomePageState extends State<HomePage> {
         if (level.level == 1) {
           Navigator.pushReplacementNamed(context, '/level1');
         }
+
+        if (level.level == 3) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: AutoSizeText('Coming Soon!!')));
+        }
         if (levelsCompleted.contains((level.level - 1).toString())) {
           String route = '/level${level.level}';
           Navigator.pushReplacementNamed(context, route);
@@ -134,6 +139,7 @@ class _HomePageState extends State<HomePage> {
                     : AssetImage(''),
                 fit: BoxFit.cover,
                 opacity: level.level != 1 &&
+                        level.level != 3 &&
                         levels.isNotEmpty &&
                         !levelsCompleted.contains((level.level - 1).toString())
                     ? 0.2
@@ -153,6 +159,7 @@ class _HomePageState extends State<HomePage> {
                     bottomLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10)),
                 color: Colors.amber.withOpacity(level.level != 1 &&
+                        level.level != 3 &&
                         levels.isNotEmpty &&
                         !levelsCompleted.contains((level.level - 1).toString())
                     ? 0.2
