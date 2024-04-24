@@ -80,7 +80,8 @@ class _Level2PageState extends State<Level2Page> {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(10)),
                   child: AutoSizeText(
-                    'Decipher the code using Vigenere Cipher for cipher text "${cipherText.toUpperCase()}" and key is "code" within 3 minutes to save your life',
+                    'Decipher the code using Vigenere Cipher for cipher text "${cipherText.toUpperCase()}" and key is "code" to save your life',
+                    textAlign: TextAlign.center,
                     maxLines: 4,
                     style: const TextStyle(fontSize: 20, fontFamily: 'Kod'),
                   ),
