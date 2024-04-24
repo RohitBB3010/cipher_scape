@@ -101,6 +101,7 @@ class _Level2PageState extends State<Level2Page> {
                             controller.text.toLowerCase()) {
                           Navigator.pushReplacementNamed(context, '/');
                         } else {
+                          debugPrint('shake called');
                           shakeKey.currentState?.shakeWidget();
                         }
                       },
@@ -108,20 +109,24 @@ class _Level2PageState extends State<Level2Page> {
                   ],
                 ),
                 SpacingConsts().mediumHeightBetweenFields(context),
-                ShakeWidget(
-                  key: shakeKey,
-                  shakeDuration: const Duration(milliseconds: 100),
-                  shakeCount: 6,
-                  shakeOffset: 15,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    height: MediaQuery.of(context).size.height * 0.6,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: const DecorationImage(
-                            image: AssetImage('assets/level_2_lock.jpg'),
-                            fit: BoxFit.cover)),
-                  ),
+                Stack(
+                  children: [
+                    ShakeWidget(
+                      key: shakeKey,
+                      shakeDuration: const Duration(milliseconds: 500),
+                      shakeCount: 3,
+                      shakeOffset: 20,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        height: MediaQuery.of(context).size.height * 0.6,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage('assets/level_2_lock.jpg'),
+                                fit: BoxFit.cover)),
+                      ),
+                    ),
+                  ],
                 )
               ],
             ),

@@ -55,7 +55,7 @@ class _Level2CarouselState extends State<Level2Carousel> {
             CustomButton(
               buttonHeight: 0.05,
               buttonWidth: 0.3,
-              buttonText: currentPage == 7 ? 'Start' : 'Skip',
+              buttonText: currentPage == 1 ? 'Start' : 'Skip',
               onPressed: () {
                 Navigator.push(
                     context,
