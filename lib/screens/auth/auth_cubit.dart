@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthUnauthenticatedState()) {
@@ -48,6 +49,26 @@ class AuthCubit extends Cubit<AuthState> {
         verificationId: _verificationId!, smsCode: otp);
 
     signInWithPhone(credential);
+  }
+
+  Future<void> googleSignIn() async {
+    emit(AuthLoadingState());
+
+    final googleUser = await GoogleSignIn().signIn();
+
+    final googleAuth = await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    final UserCredential = await FirebaseAuth.instance
+        .signInWithCredential(credential)
+        .then((value) {
+      print(AuthCubit().uid);
+      emit(AuthAuthenticatedState());
+    });
   }
 
   Future<void> signInWithPhone(PhoneAuthCredential phoneAuthCredential) async {

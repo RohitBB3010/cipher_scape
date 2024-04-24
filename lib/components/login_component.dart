@@ -17,11 +17,13 @@ class LoginComponent {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SpacingConsts().largeHeightBetweenFields(context),
-          AutoSizeText(
-            'Cypher Affair',
-            maxLines: 1,
-            style: TextStyle(
-                fontFamily: 'Legio', fontSize: fontSize, color: Colors.amber),
+          Center(
+            child: AutoSizeText(
+              'Cypher Affair',
+              maxLines: 1,
+              style: TextStyle(
+                  fontFamily: 'Legio', fontSize: fontSize, color: Colors.amber),
+            ),
           ),
           SpacingConsts().smallHeightBetweenFields(context),
           SizedBox(

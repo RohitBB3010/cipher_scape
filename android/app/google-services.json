@@ -12,7 +12,20 @@
           "package_name": "com.example.cipher_affair"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "602287237067-aohfven1r2df2v75edbhd4rvmfcu1pa3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cipher_affair",
+            "certificate_hash": "63c9376f7e5899aa1d0e2c0238747e302f16ec14"
+          }
+        },
+        {
+          "client_id": "602287237067-j97v38o89rd59t0e3jj3jr9mihr9qh4l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBuuvhNLXKbUXwN-3_aECkA1l4FTIgFKk8"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "602287237067-j97v38o89rd59t0e3jj3jr9mihr9qh4l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "602287237067-jv26mvlefp368ra9q1qhr0ukuhhhqc48.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cipherAffair"
+              }
+            }
+          ]
         }
       }
     }

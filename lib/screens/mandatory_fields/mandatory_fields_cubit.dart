@@ -13,13 +13,19 @@ class MandatoryFieldsCubit extends Cubit<MandatoryFields> {
   Future<void> checkUserData() async {
     debugPrint('Function called');
 
-    String? phoneNumber = FirebaseAuth.instance.currentUser != null
-        ? FirebaseAuth.instance.currentUser!.phoneNumber
-        : '';
+    // String? phoneNumber = FirebaseAuth.instance.currentUser != null
+    //     ? FirebaseAuth.instance.currentUser!.phoneNumber
+    //     : '';
+
+    // var doc = await FirebaseFirestore.instance
+    //     .collection(FirebasePlayer.fieldPlayers)
+    //     .where(FirebasePlayer.fieldPhone, isEqualTo: phoneNumber)
+    //     .limit(1)
+    //     .get();
 
     var doc = await FirebaseFirestore.instance
         .collection(FirebasePlayer.fieldPlayers)
-        .where(FirebasePlayer.fieldPhone, isEqualTo: phoneNumber)
+        .where(FirebasePlayer.id, isEqualTo: AuthCubit().uid)
         .limit(1)
         .get();
 
