@@ -1,5 +1,5 @@
 class VigenereCipher {
-  List<String> ciphers = [
+  List<String> cipheredTextList = [
     'cbwmfcwi',
     'gahvisqga',
     'uqlipqh',
@@ -8,7 +8,7 @@ class VigenereCipher {
     'uolrvuhvoolr',
     'czxgcfg'
   ];
-  List<String> deciphered = [
+  List<String> decipheredTextList = [
     'antidote',
     'emergency',
     'science',

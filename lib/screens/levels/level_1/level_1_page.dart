@@ -124,9 +124,9 @@ class _Level1PageState extends State<Level1Page> {
                 SpacingConsts().smallHeightBetweenFields(context),
                 ShakeWidget(
                   key: shakeKey,
-                  shakeDuration: const Duration(milliseconds: 1000),
-                  shakeCount: 3,
-                  shakeOffset: 20,
+                  shakeDuration: const Duration(milliseconds: 100),
+                  shakeCount: 6,
+                  shakeOffset: 15,
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: MediaQuery.of(context).size.height * 0.6,
