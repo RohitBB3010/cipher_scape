@@ -1,4 +1,3 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/components/custom_button.dart';
 import 'package:cipher_affair/components/loading_page.dart';
@@ -79,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                             Wrap(
                               runSpacing:
                                   MediaQuery.of(context).size.height * 0.03,
-                              children: levels.take(2).map((level) {
+                              children: levels.take(3).map((level) {
                                 return levelGrid(
                                     level, context, snapshot.data!.levels!);
                               }).toList(),
@@ -130,7 +129,9 @@ class _HomePageState extends State<HomePage> {
             borderRadius: BorderRadius.circular(10.0),
             border: Border.all(color: Colors.white, width: 2),
             image: DecorationImage(
-                image: AssetImage(level.image!),
+                image: level.image != null
+                    ? AssetImage(level.image!)
+                    : AssetImage(''),
                 fit: BoxFit.cover,
                 opacity: level.level != 1 &&
                         levels.isNotEmpty &&

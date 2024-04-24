@@ -6,7 +6,6 @@ import 'package:cipher_affair/components/shake_widget.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/firebase_functions.dart';
-import 'package:cipher_affair/screens/levels/level_1/level_1_functions.dart';
 import 'package:cipher_affair/screens/levels/level_1/puzzle_unlocked.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -120,11 +119,8 @@ class _Level1PageState extends State<Level1Page> {
                           String brokenText =
                               CeaserCipher().encryptCaesarCipher('freedom', 5);
 
-                          print(brokenText);
-
                           if (plainText.toLowerCase() ==
                               _plainController.text.toLowerCase()) {
-                            //Level1Functions().updateLevelsFirebase();
                             FirebaseFunctions().updateLevelComplete('1');
                             Navigator.push(
                                 context,
