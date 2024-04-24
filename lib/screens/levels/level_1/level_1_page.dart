@@ -5,6 +5,7 @@ import 'package:cipher_affair/components/custom_button.dart';
 import 'package:cipher_affair/components/shake_widget.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
+import 'package:cipher_affair/firebase_functions.dart';
 import 'package:cipher_affair/screens/levels/level_1/level_1_functions.dart';
 import 'package:cipher_affair/screens/levels/level_1/puzzle_unlocked.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class _Level1PageState extends State<Level1Page> {
   void initState() {
     super.initState();
     Random random = Random();
-    cipherText = CeaserCipher().cipherTexts[random.nextInt(2)];
+    cipherText = CeaserCipher().cipherTexts[random.nextInt(8)];
   }
 
   @override
@@ -116,9 +117,15 @@ class _Level1PageState extends State<Level1Page> {
                           String plainText =
                               CeaserCipher().decryptCaesar(cipherText, 5);
 
+                          String brokenText =
+                              CeaserCipher().encryptCaesarCipher('freedom', 5);
+
+                          print(brokenText);
+
                           if (plainText.toLowerCase() ==
                               _plainController.text.toLowerCase()) {
-                            Level1Functions().updateLevelsFirebase();
+                            //Level1Functions().updateLevelsFirebase();
+                            FirebaseFunctions().updateLevelComplete('1');
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

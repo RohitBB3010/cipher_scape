@@ -6,6 +6,7 @@ import 'package:cipher_affair/components/custom_button.dart';
 import 'package:cipher_affair/components/shake_widget.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
+import 'package:cipher_affair/firebase_functions.dart';
 import 'package:cipher_affair/screens/levels/level2/locker_unlocked.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -111,9 +112,10 @@ class _Level2PageState extends State<Level2Page> {
                       onPressed: () {
                         String decipheredText = VigenereCipher()
                             .decryptVigenere(cipherText, 'code');
-                        print(decipheredText);
+
                         if (decipheredText.toLowerCase() ==
                             controller.text.toLowerCase()) {
+                          FirebaseFunctions().updateLevelComplete('2');
                           Navigator.push(
                               context,
                               MaterialPageRoute(

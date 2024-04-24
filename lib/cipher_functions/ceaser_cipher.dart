@@ -1,5 +1,25 @@
 class CeaserCipher {
-  List<String> cipherTexts = ['Rnsfyzx', 'Cdqtufwfqdxnx'];
+  List<String> cipherTexts = [
+    'Rnsfyzx',
+    'Cdqtufwfqdxnx',
+    'kwjjitr',
+    'Qfgtwfytwd',
+    'Wjxjfwhm',
+    'Xzwajnqqfshj',
+    'Htsknsjrjsy',
+    'Htsyfrnsfynts'
+  ];
+
+  List<String> decipheredTexts = [
+    'Minatus',
+    'Xyloparalysis',
+    'freedom',
+    'Laboratory',
+    'research',
+    'Surveillance',
+    'Confinement',
+    'Contamination'
+  ];
 
   String decryptCaesar(String cipherText, int shift) {
     String result = "";

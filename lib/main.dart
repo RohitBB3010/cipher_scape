@@ -37,8 +37,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//63:C9:37:6F:7E:58:99:AA:1D:0E:2C:02:38:74:7E:30:2F:16:EC:14
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
