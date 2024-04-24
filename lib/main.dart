@@ -4,7 +4,6 @@ import 'package:cipher_affair/firebase_options.dart';
 import 'package:cipher_affair/routes.dart';
 import 'package:cipher_affair/screens/auth/auth_cubit.dart';
 import 'package:cipher_affair/screens/auth/auth_state.dart';
-import 'package:cipher_affair/screens/auth/pages/enter_page.dart';
 import 'package:cipher_affair/screens/auth/pages/google_signIn.dart';
 import 'package:cipher_affair/screens/auth/pages/otp_page.dart';
 import 'package:cipher_affair/screens/mandatory_fields/mandatory_fields_page.dart';
