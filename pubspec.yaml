@@ -33,6 +33,7 @@ dependencies:
   assets_audio_player: ^3.1.1
   sign_in_button: ^3.2.0
   google_sign_in: ^6.2.1
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -51,8 +52,10 @@ flutter:
     - assets/carousel/
     - assets/loading_assets/
     - assets/videos/
-    - assets/carousel/level_1_carousel/
+    - assets/carousel/level_1_carousel_before/
+    - assets/carousel/level_2_carousel_before/
     - assets/music/
+    - assets/carousel/level_1_carousel_after/
 
 
 

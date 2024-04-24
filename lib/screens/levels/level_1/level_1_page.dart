@@ -6,6 +6,7 @@ import 'package:cipher_affair/components/shake_widget.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/levels/level_1/level_1_functions.dart';
+import 'package:cipher_affair/screens/levels/level_1/puzzle_unlocked.dart';
 import 'package:flutter/material.dart';
 
 class Level1Page extends StatefulWidget {
@@ -107,7 +108,11 @@ class _Level1PageState extends State<Level1Page> {
                           if (plainText.toLowerCase() ==
                               _plainController.text.toLowerCase()) {
                             Level1Functions().updateLevelsFirebase();
-                            Navigator.pushReplacementNamed(context, '/');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const PuzzleUnlocked()));
                           } else {
                             shakeKey.currentState?.shakeWidget();
                           }

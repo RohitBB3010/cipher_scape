@@ -1,9 +1,7 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cipher_affair/components/custom_button.dart';
 import 'package:cipher_affair/components/custom_icon_button.dart';
 import 'package:cipher_affair/consts/colors.dart';
-import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/levels/level_1/level_1_page.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
@@ -89,7 +87,7 @@ class _Level1CarouselState extends State<Level1Carousel> {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(
-                          'assets/carousel/level_1_carousel/slide_$carouselItem.png'),
+                          'assets/carousel/level_1_carousel_before/slide_$carouselItem.png'),
                       fit: BoxFit.fill)),
             );
           }).toList(),
