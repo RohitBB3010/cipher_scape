@@ -19,18 +19,18 @@ class _Level1CarouselState extends State<Level1Carousel> {
   int currentPage = 0;
   late AudioPlayer audioPlayer;
 
-  @override
-  void initState() {
-    super.initState();
-    audioPlayer = AudioPlayer()..setAsset('assets/music/backgroundMusic.mp3');
-    audioPlayer.play();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   audioPlayer = AudioPlayer()..setAsset('assets/music/backgroundMusic.mp3');
+  //   audioPlayer.play();
+  // }
 
-  @override
-  void dispose() {
-    audioPlayer.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   audioPlayer.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

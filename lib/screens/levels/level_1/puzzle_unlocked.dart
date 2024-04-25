@@ -32,7 +32,7 @@ class PuzzleUnlocked extends StatelessWidget {
           height: double.infinity,
           child: Image.asset(
             'assets/carousel/level_1_carousel_after/Level_1_After_1.png',
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
       ),

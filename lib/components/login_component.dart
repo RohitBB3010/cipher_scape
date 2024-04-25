@@ -21,7 +21,7 @@ class LoginComponent {
           SpacingConsts().largeHeightBetweenFields(context),
           Center(
             child: AutoSizeText(
-              'Cypher Affair',
+              'Cypher Scape',
               maxLines: 1,
               style: TextStyle(
                   fontFamily: 'Legio', fontSize: fontSize, color: Colors.amber),
@@ -36,7 +36,7 @@ class LoginComponent {
             height: MediaQuery.of(context).size.height * height,
             child: Image.asset(
               'assets/login.png',
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           )
         ],

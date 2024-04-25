@@ -30,6 +30,11 @@ class _Level1PageState extends State<Level1Page> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       minimum: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.06),
