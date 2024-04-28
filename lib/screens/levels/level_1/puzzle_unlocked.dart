@@ -1,6 +1,11 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/components/custom_button.dart';
+import 'package:cipher_affair/consts/assets_consts.dart';
 import 'package:cipher_affair/consts/colors.dart';
+import 'package:cipher_affair/consts/level_strings.dart';
+import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PuzzleUnlocked extends StatelessWidget {
@@ -28,11 +33,36 @@ class PuzzleUnlocked extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.of(context).size.width * 0.05,
           ),
-          width: double.infinity,
-          height: double.infinity,
-          child: Image.asset(
-            'assets/carousel/level_1_carousel_after/Level_1_After_1.png',
-            fit: BoxFit.fill,
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.02,
+                    vertical: MediaQuery.of(context).size.height * 0.01),
+                height: MediaQuery.of(context).size.height * 0.25,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.black)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: LevelStrings().level1After.map((stringItem) {
+                    return AutoSizeText(
+                      stringItem,
+                      style: const TextStyle(fontSize: 20.0, fontFamily: 'Kod'),
+                    );
+                  }).toList(),
+                ),
+              ),
+              SpacingConsts().smallHeightBetweenFields(context),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.55,
+                child: Image.asset(
+                  AssetConsts().level1AfterAssets.first,
+                  fit: BoxFit.contain,
+                ),
+              )
+            ],
           ),
         ),
       ),
