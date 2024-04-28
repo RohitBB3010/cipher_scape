@@ -227,9 +227,8 @@ class _Level2CarouselState extends State<Level2Carousel> {
             }).toList(),
           ),
         ),
-        SpacingConsts().mediumHeightBetweenFields(context),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.5,
+          height: MediaQuery.of(context).size.height * 0.55,
           child: Image.asset(
             imagePath,
             fit: BoxFit.contain,

@@ -62,6 +62,10 @@ class LevelStrings {
     [
       'Another lock? Seems I am destined to perish in this wretched lab. No time to gripe; I must solve this pronto to make my escape',
       '(Moves towards the cupboard)'
-    ]
+    ],
+  ];
+
+  List<String> level2After = [
+    'And the antidote is yours now... You have saved your life, but can you escape??',
   ];
 }
