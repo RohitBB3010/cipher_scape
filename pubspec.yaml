@@ -35,6 +35,8 @@ dependencies:
   google_sign_in: ^6.2.1
   flutter_svg: ^2.0.10+1
   url_launcher: ^6.2.6
+  flutter_timer_countdown: ^1.0.7
+  circular_countdown_timer: ^0.2.3
 
 dev_dependencies:
   flutter_test:

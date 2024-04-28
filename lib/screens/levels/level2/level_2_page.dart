@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/cipher_functions/vignere_cipher.dart';
 import 'package:cipher_affair/components/custom_button.dart';
@@ -8,6 +7,7 @@ import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/firebase_functions.dart';
 import 'package:cipher_affair/screens/levels/level2/locker_unlocked.dart';
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -22,9 +22,14 @@ class _Level2PageState extends State<Level2Page> {
   TextEditingController controller = TextEditingController();
   final shakeKey = GlobalKey<ShakeWidgetState>();
   late String cipherText;
+  final timerController = CountDownController();
 
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      showDialog(
+          context: context, builder: (context) => descriptionDialog(context));
+    });
     cipherText =
         VigenereCipher().cipheredTextList[Random().nextInt(7)].toUpperCase();
     super.initState();
@@ -88,6 +93,25 @@ class _Level2PageState extends State<Level2Page> {
                   ),
                 ),
                 SpacingConsts().smallHeightBetweenFields(context),
+                // TimerCountdown(
+                //   endTime: DateTime.now().add(const Duration(minutes: 3)),
+                //   format: CountDownTimerFormat.minutesSeconds,
+                //   colonsTextStyle:
+                //       const TextStyle(color: Colors.amber, fontSize: 30),
+                //   timeTextStyle:
+                //       const TextStyle(color: Colors.white, fontSize: 40.0),
+                // ),
+                CircularCountDownTimer(
+                  controller: timerController,
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  duration: 180,
+                  fillColor: Colors.amber,
+                  ringColor: Colors.white,
+                  isReverse: true,
+                  autoStart: false,
+                ),
+
                 Row(
                   children: [
                     SizedBox(
@@ -148,11 +172,27 @@ class _Level2PageState extends State<Level2Page> {
                       ),
                     ),
                   ],
-                )
+                ),
+                SpacingConsts().mediumHeightBetweenFields(context),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget descriptionDialog(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.2,
+        child: ElevatedButton(
+            onPressed: () {
+              timerController.start();
+              Navigator.pop(context);
+            },
+            child: Text('Rohit')),
       ),
     );
   }
