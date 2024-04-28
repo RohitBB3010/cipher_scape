@@ -53,4 +53,15 @@ class LevelStrings {
     "You stepped into a ravaged lab, a mere shadow of it's former self..",
     "The lab was a mess of broken equipment and scorched walls, a far cry from it's orderliness.."
   ];
+
+  List<List<String>> level2Before = [
+    [
+      "(You've stepped into a ravaged lab, a mere shadow of it's former self. The lab was a mess of broken equipment and scorched walls)",
+      'I must find the antidote now!! Only 3 minutes remain before the drug robss me of my wits!!'
+    ],
+    [
+      'Another lock? Seems I am destined to perish in this wretched lab. No time to gripe; I must solve this pronto to make my escape',
+      '(Moves towards the cupboard)'
+    ]
+  ];
 }

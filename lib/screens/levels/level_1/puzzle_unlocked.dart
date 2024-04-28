@@ -45,11 +45,11 @@ class PuzzleUnlocked extends StatelessWidget {
                     border: Border.all(color: Colors.black)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: LevelStrings().level1After.map((stringItem) {
                     return AutoSizeText(
                       stringItem,
-                      style: const TextStyle(fontSize: 20.0, fontFamily: 'Kod'),
+                      style: const TextStyle(fontSize: 15.0, fontFamily: 'Kod'),
                     );
                   }).toList(),
                 ),

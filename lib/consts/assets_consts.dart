@@ -11,4 +11,9 @@ class AssetConsts {
   ];
 
   List<String> level1AfterAssets = ['assets/level_assets/l1_a/l1_a1.png'];
+
+  List<String> level2BeforeAssets = [
+    'assets/level_assets/l2_b/l2_b1.png',
+    'assets/level_assets/l2_b/l2_b2.png'
+  ];
 }
