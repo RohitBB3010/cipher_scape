@@ -60,6 +60,8 @@ flutter:
     - assets/music/
     - assets/carousel/level_1_carousel_after/
     - assets/carousel/level_2_carousel_after/
+    - assets/level_assets/1_b
+    - assets/level_assets/l1_a/
 
 
 
