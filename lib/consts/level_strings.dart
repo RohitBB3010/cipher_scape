@@ -69,4 +69,22 @@ class LevelStrings {
     'And the antidote is yours now... You have saved your life, but can you escape??',
     'Game Over'
   ];
+
+  List<List<String>> level3Before = [
+    [
+      "With the antidote coursing through your veins, salvation is finally within reach. Now, the only hurdle left is to make your way out of the lab through the main gate...",
+      "As you traverse the labyrinthine corridors, each step feels like a herculean effort, your weary and injured feet scraping against the cold, unforgiving floor.",
+      "Finally, you arrive at the first floor, your hopes soaring momentarily, only to plummet as you discover yet another obstacle in your path – the entrance is locked by another intricate cipher, a cruel twist of fate."
+    ],
+    [
+      "You face the main door, a foreboding barrier to your escape, with another door nearby."
+          "Dr.Peralta : Holyy F***, they have trapped the experiment victims here. They might look pale and pitiful."
+          "But the minute they are out they would tear me apart. I need to make sure they don't get out no matter what"
+    ],
+    [
+      "Take one right step, and you're out of this nightmare lab.",
+      'But make three wrong ones, and you could end up as dinner.',
+      "It's up to you to solve the puzzle and escape."
+    ]
+  ];
 }

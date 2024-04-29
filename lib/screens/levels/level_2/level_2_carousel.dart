@@ -6,7 +6,7 @@ import 'package:cipher_affair/consts/assets_consts.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/level_strings.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
-import 'package:cipher_affair/screens/levels/level2/level_2_page.dart';
+import 'package:cipher_affair/screens/levels/level_2/level_2_page.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 

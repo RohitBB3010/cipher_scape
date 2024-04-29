@@ -118,67 +118,58 @@ class _HomePageState extends State<HomePage> {
           Navigator.pushReplacementNamed(context, '/level1');
         }
 
-        if (level.level == 3) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: AutoSizeText('Coming Soon!!')));
-        }
         if (levelsCompleted.contains((level.level - 1).toString())) {
           String route = '/level${level.level}';
           Navigator.pushReplacementNamed(context, route);
         }
       },
-      child: Opacity(
-        opacity: level.level == 3 ? 0.2 : 1,
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.3,
-          width: MediaQuery.of(context).size.width * 0.6,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(color: Colors.white, width: 2),
-              image: DecorationImage(
-                  image: level.image != null
-                      ? AssetImage(level.image!)
-                      : const AssetImage(''),
-                  fit: BoxFit.cover,
-                  opacity: level.level != 1 &&
-                          levels.isNotEmpty &&
-                          !levelsCompleted
-                              .contains((level.level - 1).toString())
-                      ? 0.2
-                      : 1)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.06,
-                width: MediaQuery.of(context).size.width * 0.6,
-                padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.02,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10)),
-                  color: Colors.amber.withOpacity(level.level != 1 &&
-                          levels.isNotEmpty &&
-                          !levelsCompleted
-                              .contains((level.level - 1).toString())
-                      ? 0.2
-                      : 1),
-                ),
-                child: Center(
-                    child: AutoSizeText(
-                  'Level ${level.level} : ${level.title}',
-                  style: const TextStyle(
-                      fontSize: 40.0,
-                      color: Colors.white,
-                      fontFamily: 'Kod',
-                      fontWeight: FontWeight.bold),
-                )),
-              )
-            ],
-          ),
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.3,
+        width: MediaQuery.of(context).size.width * 0.6,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            border: Border.all(color: Colors.white, width: 2),
+            image: DecorationImage(
+                image: level.image != null
+                    ? AssetImage(level.image!)
+                    : const AssetImage(''),
+                fit: BoxFit.cover,
+                opacity: level.level != 1 &&
+                        levels.isNotEmpty &&
+                        !levelsCompleted.contains((level.level - 1).toString())
+                    ? 0.2
+                    : 1)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.06,
+              width: MediaQuery.of(context).size.width * 0.6,
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.02,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10)),
+                color: Colors.amber.withOpacity(level.level != 1 &&
+                        levels.isNotEmpty &&
+                        !levelsCompleted.contains((level.level - 1).toString())
+                    ? 0.2
+                    : 1),
+              ),
+              child: Center(
+                  child: AutoSizeText(
+                'Level ${level.level} : ${level.title}',
+                style: const TextStyle(
+                    fontSize: 40.0,
+                    color: Colors.white,
+                    fontFamily: 'Kod',
+                    fontWeight: FontWeight.bold),
+              )),
+            )
+          ],
         ),
       ),
     );

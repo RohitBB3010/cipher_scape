@@ -1,4 +1,4 @@
-import 'package:cipher_affair/screens/levels/level2/level_2_carousel.dart';
+import 'package:cipher_affair/screens/levels/level_2/level_2_carousel.dart';
 import 'package:cipher_affair/screens/levels/level_1/level_1_carousel.dart';
 
 var routes = {
