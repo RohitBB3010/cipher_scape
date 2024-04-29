@@ -7,6 +7,7 @@ import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/firebase_functions.dart';
 import 'package:cipher_affair/screens/levels/level2/locker_unlocked.dart';
+import 'package:cipher_affair/screens/levels/level2/timer_over.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -108,14 +109,19 @@ class _Level2PageState extends State<Level2Page> {
                   controller: timerController,
                   width: MediaQuery.of(context).size.width * 0.3,
                   height: MediaQuery.of(context).size.height * 0.3,
-                  duration: 180,
+                  duration: 10,
                   fillColor: accent_2,
                   ringColor: Colors.amber,
                   textStyle:
                       const TextStyle(color: Colors.white, fontSize: 30.0),
                   isReverse: true,
                   autoStart: false,
-                  onComplete: () {},
+                  onComplete: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TimerOver()));
+                  },
                 ),
                 Row(
                   children: [

@@ -67,5 +67,6 @@ class LevelStrings {
 
   List<String> level2After = [
     'And the antidote is yours now... You have saved your life, but can you escape??',
+    'Game Over'
   ];
 }
