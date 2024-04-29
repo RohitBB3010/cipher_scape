@@ -28,7 +28,9 @@ class _Level2PageState extends State<Level2Page> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       showDialog(
-          context: context, builder: (context) => descriptionDialog(context));
+          barrierDismissible: false,
+          context: context,
+          builder: (context) => descriptionDialog(context));
     });
     cipherText =
         VigenereCipher().cipheredTextList[Random().nextInt(7)].toUpperCase();
@@ -85,33 +87,36 @@ class _Level2PageState extends State<Level2Page> {
                       color: Colors.white,
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(10)),
-                  child: AutoSizeText(
-                    'Decipher the code using Vigenere Cipher for cipher text "${cipherText.toUpperCase()}" and key is "code" to save your life',
-                    textAlign: TextAlign.center,
-                    maxLines: 4,
-                    style: const TextStyle(fontSize: 20, fontFamily: 'Kod'),
+                  child: Column(
+                    children: [
+                      AutoSizeText(
+                        'Cipher Text : $cipherText',
+                        textAlign: TextAlign.center,
+                        maxLines: 4,
+                        style: const TextStyle(fontSize: 20, fontFamily: 'Kod'),
+                      ),
+                      const AutoSizeText(
+                        'Key : CODE',
+                        textAlign: TextAlign.center,
+                        maxLines: 4,
+                        style: const TextStyle(fontSize: 20, fontFamily: 'Kod'),
+                      ),
+                    ],
                   ),
                 ),
-                SpacingConsts().smallHeightBetweenFields(context),
-                // TimerCountdown(
-                //   endTime: DateTime.now().add(const Duration(minutes: 3)),
-                //   format: CountDownTimerFormat.minutesSeconds,
-                //   colonsTextStyle:
-                //       const TextStyle(color: Colors.amber, fontSize: 30),
-                //   timeTextStyle:
-                //       const TextStyle(color: Colors.white, fontSize: 40.0),
-                // ),
                 CircularCountDownTimer(
                   controller: timerController,
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   duration: 180,
-                  fillColor: Colors.amber,
-                  ringColor: Colors.white,
+                  fillColor: accent_2,
+                  ringColor: Colors.amber,
+                  textStyle:
+                      const TextStyle(color: Colors.white, fontSize: 30.0),
                   isReverse: true,
                   autoStart: false,
+                  onComplete: () {},
                 ),
-
                 Row(
                   children: [
                     SizedBox(
@@ -186,13 +191,40 @@ class _Level2PageState extends State<Level2Page> {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.2,
-        child: ElevatedButton(
-            onPressed: () {
-              timerController.start();
-              Navigator.pop(context);
-            },
-            child: Text('Rohit')),
+        color: primary_3,
+        padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height * 0.02,
+            horizontal: MediaQuery.of(context).size.width * 0.05),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const AutoSizeText(
+                'Solve the code using vignere cipher for given text and code within 3 minutes.',
+                maxLines: 3,
+                style: TextStyle(
+                    fontFamily: 'Kod', color: Colors.amber, fontSize: 18.0),
+              ),
+              SpacingConsts().smallHeightBetweenFields(context),
+              const AutoSizeText(
+                'Within 3 minutes, poison will take over your limbs and you will be doomed to die here',
+                style: TextStyle(
+                    fontFamily: 'Kod', color: Colors.amber, fontSize: 18.0),
+              ),
+              SpacingConsts().mediumHeightBetweenFields(context),
+              CustomButton(
+                color: Colors.amber,
+                buttonText: 'Start Game',
+                buttonHeight: 0.06,
+                buttonWidth: 0.6,
+                onPressed: () {
+                  timerController.start();
+                  Navigator.pop(context);
+                },
+              ),
+              SpacingConsts().smallHeightBetweenFields(context),
+            ],
+          ),
+        ),
       ),
     );
   }

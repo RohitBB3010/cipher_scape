@@ -51,6 +51,7 @@ flutter:
 
 
   assets:
+    - assets/
     - assets/loading_assets/
     - assets/music/
     - assets/level_assets/l1_b/
