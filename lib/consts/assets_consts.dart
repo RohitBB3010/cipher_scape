@@ -21,4 +21,10 @@ class AssetConsts {
     'assets/level_assets/l2_a/l2_a1.jpg',
     'assets/level_assets/l2_a/l2_a2.jpeg'
   ];
+
+  List<String> level3BeforeAssets = [
+    '',
+    'assets/level_assets/l3_b/l3_b2.jpeg',
+    'assets/level_assets/l3_b/l3_b3.jpeg'
+  ];
 }

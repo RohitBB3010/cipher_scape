@@ -8,18 +8,19 @@ import 'package:cipher_affair/consts/level_strings.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/levels/level_2/level_2_page.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 
-class Level2Carousel extends StatefulWidget {
-  const Level2Carousel({super.key});
+import 'level_3_page.dart';
+
+class Level3Carousel extends StatefulWidget {
+  const Level3Carousel({super.key});
 
   @override
-  State<Level2Carousel> createState() => _Level2CarouselState();
+  State<Level3Carousel> createState() => _Level3CarouselState();
 }
 
-class _Level2CarouselState extends State<Level2Carousel> {
-  CarouselController buttonCarouselController = CarouselController();
+class _Level3CarouselState extends State<Level3Carousel> {
   int currentPage = 0;
+  CarouselController buttonCarouselController = CarouselController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +44,12 @@ class _Level2CarouselState extends State<Level2Carousel> {
               CustomButton(
                 buttonHeight: 0.05,
                 buttonWidth: 0.3,
-                buttonText: currentPage == 1 ? 'Start' : 'Skip',
+                buttonText: currentPage == 2 ? 'Start' : 'Skip',
                 onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Level2Page()));
+                          builder: (context) => const Level3Page()));
                 },
               ),
               CustomIconButton(
@@ -73,9 +74,9 @@ class _Level2CarouselState extends State<Level2Carousel> {
               vertical: MediaQuery.of(context).size.height * 0.05),
           child: CarouselSlider(
             carouselController: buttonCarouselController,
-            items: LevelStrings().level2Before.map((carouselItem) {
+            items: LevelStrings().level3Before.map((carouselItem) {
               return carouselItemWidget(
-                  carouselItem, AssetConsts().level2BeforeAssets[currentPage]);
+                  carouselItem, AssetConsts().level3BeforeAssets[currentPage]);
             }).toList(),
             options: CarouselOptions(
                 onPageChanged: (index, reason) {
@@ -87,7 +88,7 @@ class _Level2CarouselState extends State<Level2Carousel> {
                 enableInfiniteScroll: false,
                 viewportFraction: 1,
                 reverse: false,
-                autoPlayInterval: const Duration(milliseconds: 10000),
+                autoPlayInterval: const Duration(milliseconds: 15000),
                 aspectRatio: MediaQuery.of(context).size.width /
                     MediaQuery.of(context).size.height,
                 enlargeCenterPage: false,
@@ -100,12 +101,15 @@ class _Level2CarouselState extends State<Level2Carousel> {
 
   Widget carouselItemWidget(List<String> itemStrings, String imagePath) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.02,
               vertical: MediaQuery.of(context).size.height * 0.01),
-          height: MediaQuery.of(context).size.height * 0.2,
+          height: imagePath.isNotEmpty
+              ? MediaQuery.of(context).size.height * 0.35
+              : MediaQuery.of(context).size.height * 0.6,
           decoration: BoxDecoration(
               color: Colors.white, border: Border.all(color: Colors.black)),
           child: Column(
@@ -120,13 +124,15 @@ class _Level2CarouselState extends State<Level2Carousel> {
             }).toList(),
           ),
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.55,
-          child: Image.asset(
-            imagePath,
-            fit: BoxFit.contain,
-          ),
-        )
+        SpacingConsts().smallHeightBetweenFields(context),
+        if (imagePath.isNotEmpty)
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.35,
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.contain,
+            ),
+          )
       ],
     );
   }

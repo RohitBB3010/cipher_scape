@@ -96,37 +96,40 @@ class LockerUnlocked extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.of(context).size.width * 0.05,
           ),
-          child: Column(
-            children: [
-              SpacingConsts().mediumHeightBetweenFields(context),
-              Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.02,
-                    vertical: MediaQuery.of(context).size.height * 0.01),
-                height: MediaQuery.of(context).size.height * 0.2,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.black)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: LevelStrings().level1After.map((stringItem) {
-                    return AutoSizeText(
-                      LevelStrings().level2After.first,
-                      style: const TextStyle(fontSize: 15.0, fontFamily: 'Kod'),
-                    );
-                  }).toList(),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SpacingConsts().mediumHeightBetweenFields(context),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.02,
+                      vertical: MediaQuery.of(context).size.height * 0.01),
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: LevelStrings().level1After.map((stringItem) {
+                      return AutoSizeText(
+                        LevelStrings().level2After.first,
+                        style:
+                            const TextStyle(fontSize: 15.0, fontFamily: 'Kod'),
+                      );
+                    }).toList(),
+                  ),
                 ),
-              ),
-              SpacingConsts().smallHeightBetweenFields(context),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.55,
-                child: Image.asset(
-                  AssetConsts().level2AfterAssets.first,
-                  fit: BoxFit.contain,
-                ),
-              )
-            ],
+                SpacingConsts().smallHeightBetweenFields(context),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.55,
+                  child: Image.asset(
+                    AssetConsts().level2AfterAssets.first,
+                    fit: BoxFit.contain,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
