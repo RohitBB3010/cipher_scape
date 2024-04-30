@@ -53,7 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
       body: BlocProvider(
         create: (context) => AuthCubit(),
         child: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
-          print(state);
           if (state is AuthUnauthenticatedState) {
             return const GoogleSignIn();
           }
