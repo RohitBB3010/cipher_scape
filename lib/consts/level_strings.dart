@@ -98,6 +98,15 @@ class LevelStrings {
     [
       'You hear a sound in the distance approaching, and is it another danger looming at you, another hurdle?',
       'It is not!! It is the sound of police sirens, help has finally arrived..'
+    ],
+    [
+      'An stern looking government agent gets out of one of the cars and heads towards you',
+      "There's a confidence in his walk like none other, as if he knows the future",
+    ],
+    [
+      "Agent : I'm sorry I know you've been through a lot but time is of essence here",
+      "We need you to take Minatus down, I've been tracking them for months now",
+      "We are gonna kill everyone of them, by SACRIFICING YOU.."
     ]
   ];
 }
