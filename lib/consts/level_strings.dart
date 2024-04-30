@@ -87,6 +87,17 @@ class LevelStrings {
       "Take one right step, and you're out of this nightmare lab.",
       'But make three wrong ones, and you could end up as dinner.',
       "It's up to you to solve the puzzle and escape."
+    ],
+  ];
+
+  List<List<String>> level3After = [
+    [
+      'You look back at the horror you escaped.. the suffering you endured',
+      'The enormous lab witness to all its horror secrets and stories'
+    ],
+    [
+      'You hear a sound in the distance approaching, and is it another danger looming at you, another hurdle?',
+      'It is not!! It is the sound of police sirens, help has finally arrived..'
     ]
   ];
 }

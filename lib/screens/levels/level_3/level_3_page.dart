@@ -1,10 +1,16 @@
 import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cipher_affair/cipher_functions/playfair_Cipher.dart';
+import 'package:cipher_affair/cipher_functions/playfair_cipher.dart';
 import 'package:cipher_affair/cipher_functions/vignere_cipher.dart';
 import 'package:cipher_affair/components/custom_button.dart';
+import 'package:cipher_affair/components/shake_widget.dart';
 import 'package:cipher_affair/consts/colors.dart';
+import 'package:cipher_affair/consts/list_levels.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
+import 'package:cipher_affair/firebase_functions.dart';
+import 'package:cipher_affair/screens/levels/level_3/level_completed.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,8 +22,10 @@ class Level3Page extends StatefulWidget {
 }
 
 class _Level3PageState extends State<Level3Page> {
+  TextEditingController controller = TextEditingController();
   late String cipherText;
   int lives = 3;
+  final shakeKey = GlobalKey<ShakeWidgetState>();
 
   @override
   void initState() {
@@ -73,6 +81,7 @@ class _Level3PageState extends State<Level3Page> {
           child: Center(
             child: SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   AutoSizeText(
                     'Lives : $lives',
@@ -99,7 +108,7 @@ class _Level3PageState extends State<Level3Page> {
                               const TextStyle(fontSize: 20, fontFamily: 'Kod'),
                         ),
                         const AutoSizeText(
-                          'Key : CODE',
+                          'Key : DEAD',
                           textAlign: TextAlign.center,
                           maxLines: 4,
                           style: TextStyle(fontSize: 20, fontFamily: 'Kod'),
@@ -107,6 +116,72 @@ class _Level3PageState extends State<Level3Page> {
                       ],
                     ),
                   ),
+                  SpacingConsts().smallHeightBetweenFields(context),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.62,
+                        child: TextFormField(
+                          controller: controller,
+                          textAlignVertical: TextAlignVertical.center,
+                          decoration: InputDecoration(
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              fillColor: Colors.white,
+                              filled: true,
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10))),
+                        ),
+                      ),
+                      CustomButton(
+                        buttonText: 'Unlock',
+                        color: Colors.amber,
+                        buttonHeight: 0.05,
+                        buttonWidth: 0.2,
+                        onPressed: () {
+                          String plainText = VigenereCipher()
+                              .decryptVigenere(cipherText, 'code');
+
+                          if (plainText.toLowerCase() ==
+                              controller.text.toLowerCase()) {
+                            FirebaseFunctions().updateLevelComplete('3');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const LevelCompleted()));
+                          } else {
+                            if (lives > 0) {
+                              setState(() {
+                                lives--;
+                              });
+                            }
+                            if (lives == 0) {
+                              showDialog(
+                                  barrierDismissible: true,
+                                  context: context,
+                                  builder: (context) => gameOver(context));
+                            }
+                            shakeKey.currentState?.shakeWidget();
+                          }
+                        },
+                      )
+                    ],
+                  ),
+                  SpacingConsts().mediumHeightBetweenFields(context),
+                  Stack(
+                    children: [
+                      ShakeWidget(
+                        key: shakeKey,
+                        shakeDuration: const Duration(milliseconds: 500),
+                        shakeCount: 3,
+                        shakeOffset: 20,
+                        child:
+                            Image.asset('assets/level_assets/l3_b/l3_b3.jpeg'),
+                      )
+                    ],
+                  ),
+                  SpacingConsts().mediumHeightBetweenFields(context),
                 ],
               ),
             ),
@@ -156,4 +231,48 @@ class _Level3PageState extends State<Level3Page> {
       ),
     );
   }
+
+  Widget gameOver(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      backgroundColor: primary_3,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * 0.05,
+            vertical: MediaQuery.of(context).size.height * 0.02),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const AutoSizeText(
+                'Game Over!!!',
+                style: TextStyle(
+                    fontFamily: 'Kod', fontSize: 30, color: Colors.amber),
+              ),
+              SpacingConsts().smallHeightBetweenFields(context),
+              Image.asset('assets/level_assets/l3_a/l3_a2.jpeg'),
+              SpacingConsts().smallHeightBetweenFields(context),
+              CustomButton(
+                buttonText: 'Home Page',
+                buttonHeight: 0.07,
+                buttonWidth: 0.5,
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/');
+                },
+              ),
+              SpacingConsts().smallHeightBetweenFields(context),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
+
+// List<String> decipherText = [
+//     'tickingtime',
+//     'deadpoet',
+//     'lostlab',
+//     'lastescape',
+//     'maingate',
+//     'violent'
+//   ];

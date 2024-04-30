@@ -1,67 +1,111 @@
-String decryptPlayfair(String ciphertext, String key) {
-  List<List<String>> generateKeySquare(String key) {
-    List<String> letters = 'ABCDEFGHIKLMNOPQRSTUVWXYZ'.split('');
-    List<List<String>> keySquare =
-        List.generate(5, (_) => List<String>.filled(5, ''));
-    int keyIndex = 0;
-    int letterIndex = 0;
-    // Fill the key square with the keyword
+class PlayfairCipher {
+  late List<List<String>> _matrix;
+  String _keyword;
+
+  PlayfairCipher(this._keyword) {
+    _generateMatrix();
+  }
+
+  void _generateMatrix() {
+    String key = _keyword.toUpperCase().replaceAll(RegExp(r'[^A-Z]'), '');
+    key += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    Set<String> set = key.split('').toSet();
+    List<String> flatMatrix = set.toList();
+
+    _matrix = List.generate(5, (_) => List<String>.generate(5, (_) => ''));
+
+    int index = 0;
     for (int i = 0; i < 5; i++) {
       for (int j = 0; j < 5; j++) {
-        if (keyIndex < key.length) {
-          keySquare[i][j] = key[keyIndex++];
-        } else {
-          while (letters[letterIndex] == 'J' ||
-              key.contains(letters[letterIndex])) {
-            letterIndex++;
-          }
-          keySquare[i][j] = letters[letterIndex++];
+        _matrix[i][j] = flatMatrix[index];
+        index++;
+      }
+    }
+  }
+
+  String _normalizeText(String text) {
+    return text
+        .toUpperCase()
+        .replaceAll(RegExp(r'[^A-Z]'), '')
+        .replaceAll('J', 'I');
+  }
+
+  List<int> _getPositions(String letter) {
+    for (int i = 0; i < _matrix.length; i++) {
+      for (int j = 0; j < _matrix[i].length; j++) {
+        if (_matrix[i][j] == letter) {
+          return [i, j];
         }
       }
     }
-    return keySquare;
+    return [-1, -1];
   }
 
-  // Step 1: Generate the Key Square
-  List<List<String>> keySquare = generateKeySquare(key);
+  String encrypt(String plaintext) {
+    plaintext = _normalizeText(plaintext);
+    String ciphertext = '';
+    for (int i = 0; i < plaintext.length; i += 2) {
+      String firstLetter = plaintext[i];
+      String secondLetter;
+      if (i + 1 < plaintext.length) {
+        secondLetter = plaintext[i + 1];
+      } else {
+        secondLetter =
+            'X'; // If the text length is odd, append 'X' to make pairs
+      }
+      if (firstLetter == secondLetter) {
+        secondLetter = 'X';
+        i--; // Go back one step so that the next pair starts from the same position
+      }
 
-  // Step 2: Prepare the Ciphertext
-  ciphertext = ciphertext.replaceAll(' ', '').toUpperCase();
-  if (ciphertext.length % 2 != 0) {
-    ciphertext += 'X';
-  }
+      List<int> firstPos = _getPositions(firstLetter);
+      List<int> secondPos = _getPositions(secondLetter);
 
-  // Step 3: Break the Ciphertext into Digraphs
-  List<String> digraphs = [];
-  for (int i = 0; i < ciphertext.length; i += 2) {
-    digraphs.add(ciphertext.substring(i, i + 2));
-  }
-  // Step 4: Decrypt each Digraph
-  String plaintext = '';
-  for (String digraph in digraphs) {
-    int row1 = 0, col1 = 0, row2 = 0, col2 = 0;
-    for (int i = 0; i < 5; i++) {
-      for (int j = 0; j < 5; j++) {
-        if (keySquare[i][j] == digraph[0]) {
-          row1 = i;
-          col1 = j;
-        }
-        if (keySquare[i][j] == digraph[1]) {
-          row2 = i;
-          col2 = j;
-        }
+      if (firstPos[0] == secondPos[0]) {
+        // Same row
+        ciphertext += _matrix[firstPos[0]][(firstPos[1] + 1) % 5];
+        ciphertext += _matrix[secondPos[0]][(secondPos[1] + 1) % 5];
+      } else if (firstPos[1] == secondPos[1]) {
+        // Same column
+        ciphertext += _matrix[(firstPos[0] + 1) % 5][firstPos[1]];
+        ciphertext += _matrix[(secondPos[0] + 1) % 5][secondPos[1]];
+      } else {
+        // Rectangle
+        ciphertext += _matrix[firstPos[0]][secondPos[1]];
+        ciphertext += _matrix[secondPos[0]][firstPos[1]];
       }
     }
-    if (row1 == row2) {
-      plaintext += keySquare[row1][(col1 - 1 + 5) % 5];
-      plaintext += keySquare[row2][(col2 - 1 + 5) % 5];
-    } else if (col1 == col2) {
-      plaintext += keySquare[(row1 - 1 + 5) % 5][col1];
-      plaintext += keySquare[(row2 - 1 + 5) % 5][col2];
-    } else {
-      plaintext += keySquare[row1][col2];
-      plaintext += keySquare[row2][col1];
-    }
+    return ciphertext;
   }
-  return plaintext;
+
+  String decrypt(String ciphertext) {
+    String plaintext = '';
+    for (int i = 0; i < ciphertext.length; i += 2) {
+      String firstLetter = ciphertext[i];
+      String secondLetter = ciphertext[i + 1];
+
+      List<int> firstPos = _getPositions(firstLetter);
+      List<int> secondPos = _getPositions(secondLetter);
+
+      if (firstPos[0] == secondPos[0]) {
+        // Same row
+        plaintext += _matrix[firstPos[0]][(firstPos[1] - 1 + 5) % 5];
+        plaintext += _matrix[secondPos[0]][(secondPos[1] - 1 + 5) % 5];
+      } else if (firstPos[1] == secondPos[1]) {
+        // Same column
+        plaintext += _matrix[(firstPos[0] - 1 + 5) % 5][firstPos[1]];
+        plaintext += _matrix[(secondPos[0] - 1 + 5) % 5][secondPos[1]];
+      } else {
+        // Rectangle
+        plaintext += _matrix[firstPos[0]][secondPos[1]];
+        plaintext += _matrix[secondPos[0]][firstPos[1]];
+      }
+    }
+    return plaintext;
+  }
+}
+
+String decryptPlayfair(String key, String ciphertext) {
+  PlayfairCipher cipher = PlayfairCipher(key);
+  return cipher.decrypt(ciphertext);
 }

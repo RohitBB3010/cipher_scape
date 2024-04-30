@@ -157,7 +157,6 @@ class _Level2PageState extends State<Level2Page> {
                                   builder: (context) =>
                                       const LockerUnlocked()));
                         } else {
-                          debugPrint('shake called');
                           shakeKey.currentState?.shakeWidget();
                         }
                       },
