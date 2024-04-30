@@ -53,13 +53,13 @@ class _Level3PageState extends State<Level3Page> {
                   bottomLeft: Radius.circular(10),
                   bottomRight: Radius.circular(10))),
           title: CustomButton(
-            buttonText: 'Playfair Ciphere',
+            buttonText: 'Vignere Ciphere',
             color: accent_3,
             buttonHeight: 0.05,
             buttonWidth: 0.4,
             onPressed: () {
-              Uri url = Uri.parse(
-                  'https://www.geeksforgeeks.org/playfair-cipher-with-examples/');
+              Uri url =
+                  Uri.parse('https://www.geeksforgeeks.org/vigenere-cipher/');
               launchUrl(url);
             },
           ),
@@ -158,7 +158,7 @@ class _Level3PageState extends State<Level3Page> {
                             }
                             if (lives == 0) {
                               showDialog(
-                                  barrierDismissible: true,
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (context) => gameOver(context));
                             }

@@ -27,4 +27,11 @@ class AssetConsts {
     'assets/level_assets/l3_b/l3_b2.jpeg',
     'assets/level_assets/l3_b/l3_b3.jpeg'
   ];
+
+  List<String> loginCarousel = [
+    'assets/carousel/cypher_slide1.jpeg',
+    'assets/carousel/cypher_slide2.jpeg',
+    'assets/carousel/cypher_slide3.jpeg',
+    'assets/carousel/cypher_slide4.jpeg',
+  ];
 }

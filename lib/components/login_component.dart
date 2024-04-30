@@ -1,4 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cipher_affair/consts/assets_consts.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:flutter/material.dart';
@@ -28,18 +30,42 @@ class LoginComponent {
             ),
           ),
           SpacingConsts().smallHeightBetweenFields(context),
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: primary_3)),
-            width: MediaQuery.of(context).size.width * width,
-            height: MediaQuery.of(context).size.height * height,
-            child: Image.asset(
-              'assets/login.png',
-              fit: BoxFit.fill,
-            ),
-          )
+          // Container(
+          //   decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(20),
+          //       border: Border.all(color: primary_3)),
+          //   width: MediaQuery.of(context).size.width * width,
+          //   height: MediaQuery.of(context).size.height * height,
+          //   child: Image.asset(
+          //     'assets/login.png',
+          //     fit: BoxFit.fill,
+          //   ),
+          // )
+          loginCarousel(context),
         ],
+      ),
+    );
+  }
+
+  Widget loginCarousel(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.6,
+      height: MediaQuery.of(context).size.height * 0.4,
+      child: CarouselSlider(
+        items: AssetConsts().loginCarousel.map((e) {
+          return Image.asset(e);
+        }).toList(),
+        options: CarouselOptions(
+          autoPlay: true,
+          height: MediaQuery.of(context).size.height,
+          enableInfiniteScroll: true,
+          viewportFraction: 1,
+          autoPlayInterval: const Duration(milliseconds: 1000),
+          aspectRatio: MediaQuery.of(context).size.width /
+              MediaQuery.of(context).size.height,
+          enlargeCenterPage: false,
+          padEnds: false,
+        ),
       ),
     );
   }
