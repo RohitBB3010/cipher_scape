@@ -30,17 +30,6 @@ class LoginComponent {
             ),
           ),
           SpacingConsts().smallHeightBetweenFields(context),
-          // Container(
-          //   decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.circular(20),
-          //       border: Border.all(color: primary_3)),
-          //   width: MediaQuery.of(context).size.width * width,
-          //   height: MediaQuery.of(context).size.height * height,
-          //   child: Image.asset(
-          //     'assets/login.png',
-          //     fit: BoxFit.fill,
-          //   ),
-          // )
           loginCarousel(context),
         ],
       ),

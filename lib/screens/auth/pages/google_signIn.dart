@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cipher_affair/components/login_component.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/auth/auth_cubit.dart';
@@ -12,22 +11,6 @@ class GoogleSignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //   return SafeArea(
-    //     child: Scaffold(
-    //       backgroundColor: primary_3,
-    //       body: Column(
-    //         children: [
-    //           LoginComponent().basicComp(0.8, 0.4, 50, context),
-    //           SpacingConsts().mediumHeightBetweenFields(context),
-    //           SignInButton(Buttons.googleDark, onPressed: () {
-    //             context.read<AuthCubit>().googleSignIn();
-    //           })
-    //         ],
-    //       ),
-    //     ),
-    //   );
-    // }
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: primary_3,
@@ -42,7 +25,7 @@ class GoogleSignIn extends StatelessWidget {
                         bottomLeft: Radius.circular(25),
                         bottomRight: Radius.circular(25)),
                     image: DecorationImage(
-                        image: AssetImage('assets/login_page.jpeg'),
+                        image: AssetImage('assets/backgrounds/login_page.jpeg'),
                         opacity: 0.4,
                         fit: BoxFit.cover)),
                 child: Column(
@@ -56,6 +39,25 @@ class GoogleSignIn extends StatelessWidget {
                           fontSize: 55.0,
                           fontWeight: FontWeight.bold),
                     ),
+                    SpacingConsts().mediumHeightBetweenFields(context),
+                    const AutoSizeText(
+                      'Decipher',
+                      style: TextStyle(
+                          color: Colors.amber, fontFamily: 'Kod', fontSize: 40),
+                    ),
+                    SpacingConsts().customHeightBetweenFields(context, 0.015),
+                    const AutoSizeText(
+                      'OR',
+                      style: TextStyle(
+                          color: Colors.amber, fontFamily: 'Kod', fontSize: 30),
+                    ),
+                    SpacingConsts().customHeightBetweenFields(context, 0.015),
+                    const AutoSizeText(
+                      'Die',
+                      style: TextStyle(
+                          color: Colors.amber, fontFamily: 'Kod', fontSize: 45),
+                    ),
+                    SpacingConsts().smallHeightBetweenFields(context),
                     SpacingConsts().mediumHeightBetweenFields(context),
                     SignInButton(Buttons.googleDark, onPressed: () {
                       context.read<AuthCubit>().googleSignIn();

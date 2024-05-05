@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/components/custom_button.dart';
 import 'package:cipher_affair/consts/assets_consts.dart';
 import 'package:cipher_affair/consts/colors.dart';
-import 'package:cipher_affair/consts/level_strings.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:flutter/material.dart';
 

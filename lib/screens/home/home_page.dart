@@ -59,7 +59,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage('assets/home_page_1.jpeg'),
+                              image: AssetImage(
+                                  'assets/backgrounds/home_page_1.jpeg'),
                               fit: BoxFit.cover,
                               opacity: 0.2)),
                       child: SingleChildScrollView(
