@@ -17,122 +17,112 @@ class GoogleSignIn extends StatefulWidget {
 }
 
 class _GoogleSignInState extends State<GoogleSignIn> {
-  final AudioPlayer player = AudioPlayer();
-  late AppLifecycleState? state;
-  late AppLifecycleListener listener;
+  // final AudioPlayer player = AudioPlayer();
+  // late AppLifecycleState? state;
+  // late final AppLifecycleListener _listener;
 
-  @override
-  void initState() {
-    super.initState();
-    player.setAsset('assets/music/backgroundMusic.mp3');
-    player.play();
-    player.setLoopMode(LoopMode.all);
-    state = SchedulerBinding.instance.lifecycleState;
-    listener = AppLifecycleListener(
-        onInactive: pauseMusic, onResume: playMusic, onDetach: disposePlayer);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   player.setAsset('assets/music/backgroundMusic.mp3');
+  //   player.play();
+  //   player.setLoopMode(LoopMode.all);
+  //   state = SchedulerBinding.instance.lifecycleState;
+  //   _listener =
+  //       AppLifecycleListener(onInactive: pauseMusic, onResume: playMusic);
+  // }
 
-  Future<void> pauseMusic() async {
-    await player.pause();
-  }
+  // Future<void> pauseMusic() async {
+  //   debugPrint('pausing music');
+  //   await player.pause();
+  // }
 
-  Future<void> playMusic() async {
-    await player.play();
-  }
+  // Future<void> playMusic() async {
+  //   await player.play();
+  // }
 
-  Future<void> disposePlayer() async {
-    player.dispose();
-  }
+  // Future<void> disposePlayer() async {
+  //   player.dispose();
+  // }
 
-  @override
-  void dispose() {
-    player.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   player.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
-      listener: (context, state) {
-        if (state is AuthAuthenticatedState) {
-          disposePlayer();
-        }
-      },
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: primary_3,
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(25),
-                          bottomRight: Radius.circular(25)),
-                      image: DecorationImage(
-                          image:
-                              AssetImage('assets/backgrounds/login_page.jpeg'),
-                          opacity: 0.4,
-                          fit: BoxFit.cover)),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.08,
-                        vertical: MediaQuery.of(context).size.height * 0.05),
-                    child: Column(
-                      children: [
-                        SpacingConsts()
-                            .customHeightBetweenFields(context, 0.15),
-                        const AutoSizeText(
-                          'Cipher Scape',
-                          maxLines: 1,
-                          style: TextStyle(
-                              color: Colors.amber,
-                              fontFamily: 'Legio',
-                              fontSize: 55.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SpacingConsts().mediumHeightBetweenFields(context),
-                        const AutoSizeText(
-                          'Decipher',
-                          maxLines: 1,
-                          style: TextStyle(
-                              color: Colors.amber,
-                              fontFamily: 'Fira',
-                              fontSize: 35),
-                        ),
-                        SpacingConsts()
-                            .customHeightBetweenFields(context, 0.01),
-                        const AutoSizeText(
-                          'OR',
-                          maxLines: 1,
-                          style: TextStyle(
-                              color: Colors.amber,
-                              fontFamily: 'Fira',
-                              fontSize: 25),
-                        ),
-                        SpacingConsts()
-                            .customHeightBetweenFields(context, 0.01),
-                        const AutoSizeText(
-                          'Die',
-                          maxLines: 1,
-                          style: TextStyle(
-                              color: Colors.amber,
-                              fontFamily: 'Fira',
-                              fontSize: 35),
-                        ),
-                        SpacingConsts().smallHeightBetweenFields(context),
-                        SpacingConsts().mediumHeightBetweenFields(context),
-                        SignInButton(Buttons.googleDark, onPressed: () {
-                          context.read<AuthCubit>().googleSignIn();
-                        })
-                      ],
-                    ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: primary_3,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(25),
+                        bottomRight: Radius.circular(25)),
+                    image: DecorationImage(
+                        image: AssetImage('assets/backgrounds/login_page.jpeg'),
+                        opacity: 0.4,
+                        fit: BoxFit.cover)),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.08,
+                      vertical: MediaQuery.of(context).size.height * 0.05),
+                  child: Column(
+                    children: [
+                      SpacingConsts().customHeightBetweenFields(context, 0.15),
+                      const AutoSizeText(
+                        'Cipher Scape',
+                        maxLines: 1,
+                        style: TextStyle(
+                            color: Colors.amber,
+                            fontFamily: 'Legio',
+                            fontSize: 55.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SpacingConsts().mediumHeightBetweenFields(context),
+                      const AutoSizeText(
+                        'Decipher',
+                        maxLines: 1,
+                        style: TextStyle(
+                            color: Colors.amber,
+                            fontFamily: 'Fira',
+                            fontSize: 35),
+                      ),
+                      SpacingConsts().customHeightBetweenFields(context, 0.01),
+                      const AutoSizeText(
+                        'OR',
+                        maxLines: 1,
+                        style: TextStyle(
+                            color: Colors.amber,
+                            fontFamily: 'Fira',
+                            fontSize: 25),
+                      ),
+                      SpacingConsts().customHeightBetweenFields(context, 0.01),
+                      const AutoSizeText(
+                        'Die',
+                        maxLines: 1,
+                        style: TextStyle(
+                            color: Colors.amber,
+                            fontFamily: 'Fira',
+                            fontSize: 35),
+                      ),
+                      SpacingConsts().smallHeightBetweenFields(context),
+                      SpacingConsts().mediumHeightBetweenFields(context),
+                      SignInButton(Buttons.googleDark, onPressed: () {
+                        context.read<AuthCubit>().googleSignIn();
+                      })
+                    ],
                   ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),
