@@ -9,8 +9,6 @@ import 'package:cipher_affair/screens/home/home_page_functions.dart';
 import 'package:cipher_affair/screens/home/level.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 
