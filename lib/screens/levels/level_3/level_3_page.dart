@@ -142,8 +142,8 @@ class _Level3PageState extends State<Level3Page> {
                           String plainText = VigenereCipher()
                               .decryptVigenere(cipherText, 'code');
 
-                          if (plainText.toLowerCase() ==
-                              controller.text.toLowerCase()) {
+                          if (plainText.toLowerCase().trim() ==
+                              controller.text.toLowerCase().trim()) {
                             FirebaseFunctions().updateLevelComplete('3');
                             Navigator.push(
                                 context,

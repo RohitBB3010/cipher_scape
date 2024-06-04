@@ -148,8 +148,8 @@ class _Level2PageState extends State<Level2Page> {
                         String decipheredText = VigenereCipher()
                             .decryptVigenere(cipherText, 'code');
 
-                        if (decipheredText.toLowerCase() ==
-                            controller.text.toLowerCase()) {
+                        if (decipheredText.toLowerCase().trim() ==
+                            controller.text.toLowerCase().trim()) {
                           FirebaseFunctions().updateLevelComplete('2');
                           Navigator.push(
                               context,

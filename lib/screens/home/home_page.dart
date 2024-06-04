@@ -8,6 +8,9 @@ import 'package:cipher_affair/screens/auth/auth_cubit.dart';
 import 'package:cipher_affair/screens/home/home_page_functions.dart';
 import 'package:cipher_affair/screens/home/level.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -18,19 +21,33 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  late AudioPlayer audioPlayer;
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+  final AudioPlayer player = AudioPlayer();
+  late AppLifecycleState? state;
+  late final AppLifecycleListener _listener;
 
   @override
   void initState() {
     super.initState();
-    audioPlayer = AudioPlayer()..setAsset('assets/music/music.mp3');
-    audioPlayer.play();
+    player.setAsset('assets/music/music.mp3');
+    player.play();
+    player.setLoopMode(LoopMode.all);
+    state = SchedulerBinding.instance.lifecycleState;
+    _listener =
+        AppLifecycleListener(onInactive: pauseMusic, onResume: playMusic);
+  }
+
+  Future<void> pauseMusic() async {
+    await player.pause();
+  }
+
+  Future<void> playMusic() async {
+    await player.play();
   }
 
   @override
   void dispose() {
-    audioPlayer.dispose();
+    player.dispose();
     super.dispose();
   }
 

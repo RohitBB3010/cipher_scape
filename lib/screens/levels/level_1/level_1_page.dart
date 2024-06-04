@@ -121,8 +121,8 @@ class _Level1PageState extends State<Level1Page> {
                           String plainText =
                               CeaserCipher().decryptCaesar(cipherText, 5);
 
-                          if (plainText.toLowerCase() ==
-                              _plainController.text.toLowerCase()) {
+                          if (plainText.toLowerCase().trim() ==
+                              _plainController.text.toLowerCase().trim()) {
                             FirebaseFunctions().updateLevelComplete('1');
                             Navigator.push(
                                 context,
