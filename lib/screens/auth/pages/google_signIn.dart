@@ -90,34 +90,37 @@ class _GoogleSignInState extends State<GoogleSignIn> {
                           style: TextStyle(
                               color: Colors.amber,
                               fontFamily: 'Legio',
-                              fontSize: 50.0,
+                              fontSize: 55.0,
                               fontWeight: FontWeight.bold),
                         ),
                         SpacingConsts().mediumHeightBetweenFields(context),
                         const AutoSizeText(
                           'Decipher',
+                          maxLines: 1,
                           style: TextStyle(
                               color: Colors.amber,
-                              fontFamily: 'Kod',
+                              fontFamily: 'Fira',
                               fontSize: 35),
                         ),
                         SpacingConsts()
-                            .customHeightBetweenFields(context, 0.015),
+                            .customHeightBetweenFields(context, 0.01),
                         const AutoSizeText(
                           'OR',
+                          maxLines: 1,
                           style: TextStyle(
                               color: Colors.amber,
-                              fontFamily: 'Kod',
-                              fontSize: 30),
+                              fontFamily: 'Fira',
+                              fontSize: 25),
                         ),
                         SpacingConsts()
-                            .customHeightBetweenFields(context, 0.015),
+                            .customHeightBetweenFields(context, 0.01),
                         const AutoSizeText(
                           'Die',
+                          maxLines: 1,
                           style: TextStyle(
                               color: Colors.amber,
-                              fontFamily: 'Kod',
-                              fontSize: 40),
+                              fontFamily: 'Fira',
+                              fontSize: 35),
                         ),
                         SpacingConsts().smallHeightBetweenFields(context),
                         SpacingConsts().mediumHeightBetweenFields(context),

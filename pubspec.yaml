@@ -82,5 +82,13 @@ flutter:
     - family: Kod
       fonts:
         - asset: fonts/Kodchasan-Regular.ttf
+
+    - family: JetBrains
+      fonts:
+        - asset : fonts/JetBrainsMonoNL-Regular.ttf
+
+    - family: Fira
+      fonts:
+        - asset : fonts/FiraCode-Regular.ttf
        
 
