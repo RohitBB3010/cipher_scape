@@ -72,14 +72,32 @@ class MandatoryFieldsPage extends StatelessWidget {
                       SpacingConsts().smallHeightBetweenFields(context),
                       CustomButton(
                         buttonText: 'Submit',
-                        buttonHeight: 0.07,
+                        buttonHeight: 0.06,
                         buttonWidth: 0.7,
                         color: Colors.amber,
                         onPressed: () {
-                          context
-                              .read<MandatoryFieldsCubit>()
-                              .setMandatoryFields(
-                                  nameController.text, emailController.text);
+                          if (nameController.text.isEmpty ||
+                              emailController.text.isEmpty) {
+                            SnackBar snackBar = SnackBar(
+                                elevation: 0.8,
+                                behavior: SnackBarBehavior.floating,
+                                backgroundColor: Colors.amber,
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                content: const Center(
+                                  child: AutoSizeText(
+                                    'Please fill all fields',
+                                    maxLines: 1,
+                                    style: TextStyle(fontSize: 18.0),
+                                  ),
+                                ));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          } else {
+                            context
+                                .read<MandatoryFieldsCubit>()
+                                .setMandatoryFields(
+                                    nameController.text, emailController.text);
+                          }
                         },
                       )
                     ],
