@@ -2,11 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cipher_affair/consts/colors.dart';
 import 'package:cipher_affair/consts/spacing_consts.dart';
 import 'package:cipher_affair/screens/auth/auth_cubit.dart';
-import 'package:cipher_affair/screens/auth/auth_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
 class GoogleSignIn extends StatefulWidget {
@@ -17,40 +14,6 @@ class GoogleSignIn extends StatefulWidget {
 }
 
 class _GoogleSignInState extends State<GoogleSignIn> {
-  // final AudioPlayer player = AudioPlayer();
-  // late AppLifecycleState? state;
-  // late final AppLifecycleListener _listener;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   player.setAsset('assets/music/backgroundMusic.mp3');
-  //   player.play();
-  //   player.setLoopMode(LoopMode.all);
-  //   state = SchedulerBinding.instance.lifecycleState;
-  //   _listener =
-  //       AppLifecycleListener(onInactive: pauseMusic, onResume: playMusic);
-  // }
-
-  // Future<void> pauseMusic() async {
-  //   debugPrint('pausing music');
-  //   await player.pause();
-  // }
-
-  // Future<void> playMusic() async {
-  //   await player.play();
-  // }
-
-  // Future<void> disposePlayer() async {
-  //   player.dispose();
-  // }
-
-  // @override
-  // void dispose() {
-  //   player.dispose();
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

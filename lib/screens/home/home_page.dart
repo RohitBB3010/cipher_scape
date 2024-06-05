@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                           children: [
                             SpacingConsts().mediumHeightBetweenFields(context),
                             const AutoSizeText(
-                              'CypherScape',
+                              'Cipher Scape',
                               maxLines: 1,
                               style: TextStyle(
                                   fontSize: 55.0,

@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "cipher_affair" "\0"
+            VALUE "FileDescription", "Cipher Scape" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "cipher_affair" "\0"
+            VALUE "InternalName", "Cipher Scape" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
             VALUE "OriginalFilename", "cipher_affair.exe" "\0"
-            VALUE "ProductName", "cipher_affair" "\0"
+            VALUE "ProductName", "Cipher Scape" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

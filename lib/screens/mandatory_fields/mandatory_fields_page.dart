@@ -37,7 +37,7 @@ class MandatoryFieldsPage extends StatelessWidget {
                     children: [
                       SpacingConsts().largeHeightBetweenFields(context),
                       const AutoSizeText(
-                        'Cypher Affair',
+                        'Cipher Scape',
                         style: TextStyle(
                             fontFamily: 'Legio',
                             fontSize: 40.0,
@@ -45,7 +45,7 @@ class MandatoryFieldsPage extends StatelessWidget {
                       ),
                       SpacingConsts().mediumHeightBetweenFields(context),
                       const AutoSizeText(
-                        'Let us get your name!!',
+                        'Join the ranks!! Identify yourself!',
                         style: TextStyle(
                             fontFamily: 'Kod',
                             fontSize: 20.0,

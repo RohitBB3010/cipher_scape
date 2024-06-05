@@ -45,7 +45,7 @@ class LoadingPage extends StatelessWidget {
                 horizontal: MediaQuery.of(context).size.width * 0.04,
               ),
               child: const AutoSizeText(
-                'Cypher Scape',
+                'Cipher Scape',
                 maxLines: 1,
                 textAlign: TextAlign.center,
                 style: TextStyle(
