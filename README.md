@@ -1,11 +1,7 @@
 # Cryptography Puzzle Escape Game
 I originally started this game project as part of a Cryptography class, but it quickly became a personal passion project. The game combines cryptography with an engaging storyline, creating a challenging and immersive experience.
 
-## Tech Stack :Technologies used: <p>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" alt="Flutter" width="40" height="40"/>
-  <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="Firebase" width="40" height="40"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" width="40" height="40"/>
-</p>
+## Tech Stack : ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)  ![Firestore](https://img.shields.io/badge/Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black) ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
 ## Game Overview
 In this game, the player takes on the role of a scientist trapped in an abandoned library after being poisoned by a group of evil scientists. The only way to escape is by solving cryptographic puzzles using classic techniques such as the Playfair, Vigenère, and Caesar ciphers. The game is designed across three levels, with each one becoming progressively harder as the player advances.
